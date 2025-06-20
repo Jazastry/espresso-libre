@@ -48,24 +48,27 @@ colors.visual = colors.selection
 colors.search = "#FFD700"            -- Search highlight (gold)
 colors.match_paren = "#FF6B6B"       -- Matching parentheses (red)
 
--- Terminal colors
+-- Terminal colors mapped from authentic .tmTheme colors
 colors.terminal = {
-  black = colors.bg,
-  red = colors.constant,
-  green = colors.string,
-  yellow = "#FFD700",
-  blue = colors.keyword,
-  magenta = colors.constant_builtin,
-  cyan = colors.variable,
-  white = colors.fg,
-  bright_black = "#666666",
-  bright_red = "#FF6B6B",
-  bright_green = colors.string_escape,
-  bright_yellow = "#FFFF99",
-  bright_blue = colors.library_function,
-  bright_magenta = colors.library_object,
-  bright_cyan = "#7FFFD4",
-  bright_white = "#FFFFFF"
+  -- Standard colors (using closest authentic theme colors)
+  black = colors.bg,                   -- #2A211C (background)
+  red = colors.constant,               -- #C5656B (user-defined constant)
+  green = colors.string,               -- #049B0A (string)
+  yellow = colors.function_name,       -- #FF9358 (function name - closest to yellow/orange)
+  blue = colors.keyword,               -- #43A8ED (keyword)
+  magenta = colors.constant_builtin,   -- #585CF6 (built-in constant)
+  cyan = colors.variable,              -- #318495 (variable)
+  white = colors.fg,                   -- #BDAE9D (foreground)
+  
+  -- Bright colors (using brighter/alternate authentic colors)
+  bright_black = colors.method_type,   -- #8B8E9C (gray from method types)
+  bright_red = colors.error,           -- #990000 (error red)
+  bright_green = colors.string_escape, -- #2FE420 (string interpolation - bright green)
+  bright_yellow = colors.preprocessor_directive, -- #9AFF87 (light green/yellow-ish)
+  bright_blue = colors.library_function, -- #7290D9 (library function blue)
+  bright_magenta = colors.library_object, -- #6D79DE (library object purple)
+  bright_cyan = colors.caret,          -- #889AFF (caret blue)
+  bright_white = colors.invisibles     -- #BFBFBF (invisibles - light gray)
 }
 
 return colors 
