@@ -212,7 +212,7 @@ highlight("ReactHook", { fg = colors.function_name, style = "bold" })
 
 -- Specific keyword highlighting for import/export/const
 vim.cmd("syntax keyword ImportExportKeywords import export const let var")
-highlight("ImportExportKeywords", { fg = colors.function_name, style = "bold" })
+highlight("ImportExportKeywords", { fg = colors.keyword, style = "bold" })
 
 -- Tree-sitter fallbacks
 highlight("@punctuation.bracket", { fg = colors.fg })

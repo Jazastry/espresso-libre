@@ -188,9 +188,9 @@ M.setup = function()
     ["@keyword.conditional"] = { fg = colors.keyword, bold = true },
     ["@keyword.repeat"] = { fg = colors.keyword, bold = true },
     ["@keyword.exception"] = { fg = colors.keyword, bold = true },
-    ["@keyword.import"] = { fg = colors.function_name, bold = true },
-    ["@keyword.export"] = { fg = colors.function_name, bold = true },
-    ["@keyword.storage"] = { fg = colors.function_name, bold = true },
+    ["@keyword.import"] = { fg = colors.keyword, bold = true },
+    ["@keyword.export"] = { fg = colors.keyword, bold = true },
+    ["@keyword.storage"] = { fg = colors.keyword, bold = true },
     
     ["@type"] = { fg = colors.constant, bold = true },
     ["@type.builtin"] = { fg = colors.constant, bold = true },
@@ -402,8 +402,8 @@ M.setup = function()
         syntax keyword ImportExportKeywords import export const let var
       ]])
       
-      -- Apply orange color to these keywords
-      vim.api.nvim_set_hl(0, "ImportExportKeywords", { fg = colors.function_name, bold = true })
+      -- Apply light blue color to these keywords (same as function keyword)
+      vim.api.nvim_set_hl(0, "ImportExportKeywords", { fg = colors.keyword, bold = true })
     end,
   })
 
