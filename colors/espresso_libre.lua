@@ -195,19 +195,11 @@ vim.g.terminal_color_13 = colors.library_object
 vim.g.terminal_color_14 = "#7FFFD4"
 vim.g.terminal_color_15 = "#FFFFFF"
 
--- Apply all highlights
-for group, opts in pairs(highlights) do
-  highlight(group, opts)
-end
-
 -- Bracket-specific highlighting using syntax groups
 -- Define syntax groups for specific bracket types
 vim.cmd([[
-  " Curly braces {} - yellow/orange
   syntax match CurlyBraces /[{}]/
-  " Square brackets [] - magenta/purple  
   syntax match SquareBrackets /[\[\]]/
-  " Parentheses () - default foreground
   syntax match Parentheses /[()]/
 ]])
 
@@ -218,5 +210,4 @@ highlight("Parentheses", { fg = colors.fg })
 
 -- Tree-sitter fallbacks
 highlight("@punctuation.bracket", { fg = colors.fg })
-highlight("@punctuation.delimiter", { fg = colors.fg })
-highlight("Delimiter", { fg = colors.fg }) 
+highlight("@punctuation.delimiter", { fg = colors.fg }) 
