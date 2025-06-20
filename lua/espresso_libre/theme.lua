@@ -336,7 +336,40 @@ M.setup = function()
     NotifyINFOTitle = { fg = colors.keyword },
     NotifyDEBUGTitle = { fg = colors.method_type },
     NotifyTRACETitle = { fg = colors.constant },
+    
+    -- Bracket-specific highlighting
+    -- Punctuation and brackets (Tree-sitter)
+    ["@punctuation.bracket"] = { fg = colors.fg },  -- Default brackets (parentheses)
+    ["@punctuation.delimiter"] = { fg = colors.fg },  -- Commas, semicolons, etc.
+    
+    -- Specific bracket overrides (if supported by parser)
+    ["@punctuation.special"] = { fg = colors.function_name },  -- Special punctuation
+    
+    -- Legacy vim syntax for brackets (using syntax matching)
+    Delimiter = { fg = colors.fg },  -- Default delimiters
   }
+
+  -- Setup bracket-specific highlighting using syntax groups
+  -- This works more reliably than Tree-sitter for bracket colors
+  vim.api.nvim_create_autocmd("Syntax", {
+    pattern = "*",
+    callback = function()
+      -- Define syntax groups for specific bracket types
+      vim.cmd([[
+        " Curly braces {} - yellow/orange
+        syntax match CurlyBraces /[{}]/
+        " Square brackets [] - magenta/purple  
+        syntax match SquareBrackets /[\[\]]/
+        " Parentheses () - default foreground
+        syntax match Parentheses /[()]/
+      ]])
+      
+      -- Apply colors to the syntax groups
+      vim.api.nvim_set_hl(0, "CurlyBraces", { fg = colors.function_name })
+      vim.api.nvim_set_hl(0, "SquareBrackets", { fg = colors.constant_builtin }) 
+      vim.api.nvim_set_hl(0, "Parentheses", { fg = colors.fg })
+    end,
+  })
 
   return highlights, theme
 end
