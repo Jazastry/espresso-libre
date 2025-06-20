@@ -188,9 +188,7 @@ M.setup = function()
     ["@keyword.conditional"] = { fg = colors.keyword, bold = true },
     ["@keyword.repeat"] = { fg = colors.keyword, bold = true },
     ["@keyword.exception"] = { fg = colors.keyword, bold = true },
-    ["@keyword.import"] = { fg = colors.keyword, bold = true },
-    ["@keyword.export"] = { fg = colors.keyword, bold = true },
-    ["@keyword.storage"] = { fg = colors.keyword, bold = true },
+    ["@keyword.import"] = { fg = colors.preprocessor_directive, bold = true },
     
     ["@type"] = { fg = colors.constant, bold = true },
     ["@type.builtin"] = { fg = colors.constant, bold = true },
@@ -390,20 +388,6 @@ M.setup = function()
       
       -- Apply orange color to hook names
       vim.api.nvim_set_hl(0, "ReactHook", { fg = colors.function_name, bold = true })
-    end,
-  })
-
-  -- Setup specific keyword highlighting for import/export/const
-  vim.api.nvim_create_autocmd("Syntax", {
-    pattern = "*",
-    callback = function()
-      -- Define syntax groups for specific keywords
-      vim.cmd([[
-        syntax keyword ImportExportKeywords import export const let var
-      ]])
-      
-      -- Apply light blue color to these keywords (same as function keyword)
-      vim.api.nvim_set_hl(0, "ImportExportKeywords", { fg = colors.keyword, bold = true })
     end,
   })
 
