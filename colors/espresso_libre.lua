@@ -197,11 +197,9 @@ vim.g.terminal_color_15 = "#FFFFFF"
 
 -- Bracket-specific highlighting using syntax groups
 -- Define syntax groups for specific bracket types
-vim.cmd([[
-  syntax match CurlyBraces /[{}]/
-  syntax match SquareBrackets /[\[\]]/
-  syntax match Parentheses /[()]/
-]])
+vim.cmd("syntax match CurlyBraces /[{}]/")
+vim.cmd("syntax match SquareBrackets /[\\[\\]]/")
+vim.cmd("syntax match Parentheses /[()]/")
 
 -- Apply colors to bracket syntax groups
 highlight("CurlyBraces", { fg = colors.function_name })
