@@ -1,53 +1,71 @@
-# Espresso_Libre.nvim
+# Espresso_Libre Theme for Neovim
 
-A warm and cozy Neovim colorscheme inspired by the Espresso_Libre VSCode theme. This theme brings the rich, coffee-inspired brown tones and cream colors to your Neovim setup, creating a comfortable coding environment perfect for long programming sessions.
+A warm, coffee-inspired Neovim colorscheme based on the original **Espresso Libre** TextMate theme by Chris Thomas. This theme brings the cozy, rich browns and vibrant syntax colors of the classic Espresso Libre theme to Neovim.
 
-![Espresso_Libre Theme Preview](preview.png)
+## 🎨 Color Palette
+
+The theme uses the authentic colors from the original Espresso Libre TextMate theme:
+
+| Element | Color | Hex |
+|---------|-------|-----|
+| **Background** | Dark Brown | `#2A211C` |
+| **Foreground** | Warm Beige | `#BDAE9D` |
+| **Comments** | Blue | `#0066FF` |
+| **Keywords** | Light Blue | `#43A8ED` |
+| **Strings** | Green | `#049B0A` |
+| **Numbers** | Green | `#44AA43` |
+| **Functions** | Orange | `#FF9358` |
+| **Constants** | Red/Pink | `#C5656B` |
+| **Built-in Constants** | Purple | `#585CF6` |
+| **Variables** | Teal | `#318495` |
+| **Operators** | Gray | `#687687` |
+| **Line Highlight** | Dark Brown | `#3A312C` |
+| **Selection** | Light Blue | `#C3DCFF` |
+| **Caret** | Light Blue | `#889AFF` |
 
 ## ✨ Features
 
-- 🎨 **Rich Coffee Palette**: Warm browns, creams, and caramel tones
-- 🌙 **Dark Theme**: Easy on the eyes for extended coding sessions
-- 🔧 **Highly Configurable**: Extensive customization options
-- 📦 **Plugin Support**: Built-in support for popular Neovim plugins
-- 🔥 **Treesitter Ready**: Full Tree-sitter syntax highlighting support
-- 🚀 **LSP Integration**: Comprehensive LSP diagnostics styling
-- 📱 **Terminal Colors**: Matching terminal color scheme
+- 🎯 **Authentic Colors**: Based on the original Espresso Libre TextMate theme
+- 🔥 **Rich Syntax Highlighting**: Carefully crafted colors for optimal readability
+- 🌟 **Modern Plugin Support**: Works with Tree-sitter, LSP, Telescope, NvimTree, and more
+- ⚡ **High Performance**: Optimized for speed and efficiency
+- 🎨 **Customizable**: Easy configuration options for styles and transparency
+- 📱 **Terminal Support**: Includes terminal color definitions
+- 🔧 **Lualine Integration**: Custom lualine theme included
 
 ## 📦 Installation
+
+### Using [packer.nvim](https://github.com/wbthomason/packer.nvim)
+
+```lua
+use 'username/espresso_libre'
+```
 
 ### Using [lazy.nvim](https://github.com/folke/lazy.nvim)
 
 ```lua
 {
-  "your-username/espresso_libre.nvim",
+  'username/espresso_libre',
   lazy = false,
   priority = 1000,
   config = function()
-    require("espresso_libre").setup({
-      -- Configuration options
-    })
-    vim.cmd.colorscheme("espresso_libre")
+    vim.cmd([[colorscheme espresso_libre]])
   end,
-}
-```
-
-### Using [packer.nvim](https://github.com/wbthomason/packer.nvim)
-
-```lua
-use {
-  "your-username/espresso_libre.nvim",
-  config = function()
-    require("espresso_libre").setup()
-    vim.cmd.colorscheme("espresso_libre")
-  end
 }
 ```
 
 ### Using [vim-plug](https://github.com/junegunn/vim-plug)
 
 ```vim
-Plug 'your-username/espresso_libre.nvim'
+Plug 'username/espresso_libre'
+```
+
+### Manual Installation
+
+Clone this repository to your Neovim configuration directory:
+
+```bash
+git clone https://github.com/username/espresso_libre.git ~/.config/nvim/pack/themes/start/espresso_libre
 ```
 
 ## 🚀 Usage
@@ -55,187 +73,92 @@ Plug 'your-username/espresso_libre.nvim'
 ### Basic Usage
 
 ```lua
--- Load with default settings
-require("espresso_libre").load()
-
--- Or use the colorscheme command
-vim.cmd.colorscheme("espresso_libre")
+-- Enable the colorscheme
+vim.cmd([[colorscheme espresso_libre]])
 ```
 
-### Advanced Configuration
+### With Configuration
 
 ```lua
-require("espresso_libre").setup({
-  -- Enable transparent background
-  transparent = false,
-  
-  -- Enable italic comments
-  italic_comments = true,
-  
-  -- Underline links
-  underline_links = true,
-  
-  -- Disable nvim-tree background color
-  disable_nvimtree_bg = false,
-  
-  -- Apply theme colors to terminal
-  terminal_colors = true,
-  
-  -- Override specific colors
-  color_overrides = {
-    bg = "#1A1A1A",  -- Custom background
-    fg = "#F0F0F0",  -- Custom foreground
+require('espresso_libre').setup({
+  transparent = false,        -- Enable transparent background
+  terminal_colors = true,     -- Set terminal colors
+  styles = {
+    comments = { italic = true },
+    keywords = { bold = true },
+    functions = { bold = true },
+    constants = { bold = true },
+    strings = {},
+    variables = {},
   },
-  
-  -- Override specific highlight groups
-  group_overrides = {
-    Comment = { fg = "#888888", italic = true },
-    Keyword = { fg = "#FF6B6B", bold = true },
-  }
 })
 
--- Load the theme
-require("espresso_libre").load()
+vim.cmd([[colorscheme espresso_libre]])
 ```
 
-## 🎨 Color Palette
+## ⚙️ Configuration
 
-| Color | Hex | Usage |
-|-------|-----|-------|
-| ![#2a211c](https://via.placeholder.com/15/2a211c/000000?text=+) | `#2a211c` | Background |
-| ![#bdae9d](https://via.placeholder.com/15/bdae9d/000000?text=+) | `#bdae9d` | Foreground |
-| ![#ff9358](https://via.placeholder.com/15/ff9358/000000?text=+) | `#ff9358` | Orange (Functions/Accent) |
-| ![#049b0a](https://via.placeholder.com/15/049b0a/000000?text=+) | `#049b0a` | Green (Strings) |
-| ![#43a8ed](https://via.placeholder.com/15/43a8ed/000000?text=+) | `#43a8ed` | Blue (Keywords) |
-| ![#ffcc02](https://via.placeholder.com/15/ffcc02/000000?text=+) | `#ffcc02` | Yellow (Types) |
-| ![#d90429](https://via.placeholder.com/15/d90429/000000?text=+) | `#d90429` | Red (Errors) |
-| ![#6b5a4d](https://via.placeholder.com/15/6b5a4d/000000?text=+) | `#6b5a4d` | Muted Brown (Line Numbers) |
+### Available Options
 
-## 🔌 Plugin Support
+```lua
+require('espresso_libre').setup({
+  transparent = false,        -- Enable transparent background
+  terminal_colors = true,     -- Configure terminal colors
+  styles = {
+    comments = { italic = true },
+    keywords = { bold = true },
+    functions = { bold = true },
+    constants = { bold = true },
+    strings = {},
+    variables = {},
+  },
+})
+```
 
-Espresso_Libre comes with built-in support for popular Neovim plugins:
-
-- **Tree-sitter**: Full syntax highlighting support
-- **LSP**: Diagnostics, references, and symbols
-- **Telescope**: Fuzzy finder styling
-- **NvimTree**: File explorer theming
-- **Neo-tree**: Modern file explorer support
-- **GitSigns**: Git integration colors
-- **WhichKey**: Keybinding helper styling
-- **Bufferline**: Buffer/tab styling
-- **Lualine**: Status line theming
-- **Indent Blankline**: Indentation guides
-
-### Lualine Configuration
+### Lualine Integration
 
 ```lua
 require('lualine').setup({
   options = {
-    theme = 'espresso_libre',  -- Use the built-in lualine theme
-  },
+    theme = 'espresso_libre'
+  }
 })
 ```
 
-### Bufferline Configuration
+## 🔌 Plugin Support
 
-The theme includes comprehensive bufferline support. Here's a recommended configuration:
+This theme includes enhanced support for popular Neovim plugins:
 
-```lua
-require("bufferline").setup({
-  options = {
-    buffer_close_icon = "",
-    close_command = "bdelete %d",
-    close_icon = "",
-    indicator = {
-      style = "icon",
-      icon = " ",
-    },
-    offsets = { 
-      { 
-        filetype = "NvimTree", 
-        text = "EXPLORER", 
-        text_align = "center" 
-      } 
-    },
-    show_close_icon = false,
-    show_tab_indicators = true,
-  },
-})
-```
+- **Tree-sitter**: Full syntax highlighting support
+- **LSP**: Diagnostic and semantic highlighting
+- **Telescope**: Custom colors for fuzzy finding
+- **NvimTree**: File explorer styling
+- **GitSigns**: Git integration colors
+- **WhichKey**: Command palette styling
+- **BufferLine**: Tab/buffer line theming
+- **Indent Blankline**: Indentation guides
+- **Leap**: Motion plugin highlighting
+- **Notify**: Notification styling
 
-## ⚙️ Configuration Options
+## 🎨 Screenshots
 
-| Option | Type | Default | Description |
-|--------|------|---------|-------------|
-| `transparent` | boolean | `false` | Enable transparent background |
-| `italic_comments` | boolean | `true` | Use italics for comments |
-| `underline_links` | boolean | `true` | Underline links and URLs |
-| `disable_nvimtree_bg` | boolean | `false` | Remove NvimTree background |
-| `terminal_colors` | boolean | `true` | Apply colors to terminal |
-| `color_overrides` | table | `{}` | Override specific colors |
-| `group_overrides` | table | `{}` | Override highlight groups |
+*Screenshots coming soon!*
 
-## 🛠️ Customization Examples
+## 🔍 Inspiration
 
-### Transparent Background
-
-```lua
-require("espresso_libre").setup({
-  transparent = true,
-})
-```
-
-### Custom Colors
-
-```lua
-require("espresso_libre").setup({
-  color_overrides = {
-    bg = "#1E1E1E",           -- Darker background
-    caramel = "#FFD700",      -- Golden accent
-    green = "#90EE90",        -- Lighter green
-  },
-})
-```
-
-### Custom Highlight Groups
-
-```lua
-require("espresso_libre").setup({
-  group_overrides = {
-    -- Make comments more subtle
-    Comment = { fg = "#6B4423", italic = true },
-    
-    -- Highlight TODOs more prominently
-    Todo = { fg = "#FFD700", bg = "#8B4513", bold = true },
-    
-    -- Custom cursor line
-    CursorLine = { bg = "#3D2B23" },
-  },
-})
-```
-
-## 🔄 Switching Themes
-
-You can programmatically switch to Espresso_Libre:
-
-```lua
--- Switch to Espresso_Libre
-require("espresso_libre").load()
-
--- Or use the traditional colorscheme command
-vim.cmd.colorscheme("espresso_libre")
-```
+This theme is faithfully based on the original **Espresso Libre** TextMate theme created by Chris Thomas. The color palette and syntax highlighting rules have been carefully preserved to maintain the authentic feel of this beloved editor theme.
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit issues, feature requests, or pull requests.
+Contributions are welcome! Please feel free to submit issues, fork the repository, and create pull requests.
 
-### Development Setup
+### Development
 
-1. Clone the repository
-2. Make your changes
-3. Test with your Neovim configuration
-4. Submit a pull request
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## 📄 License
 
@@ -243,10 +166,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- Inspired by the original [Espresso_Libre VSCode theme](https://github.com/gerane/VSCodeThemes/tree/master/gerane.Theme-Espresso_Libre)
-- Built with inspiration from the [vscode.nvim](https://github.com/Mofiqul/vscode.nvim) theme structure
-- Coffee and espresso color palettes from various design resources
+- **Chris Thomas** - Original creator of the Espresso Libre TextMate theme
+- The Neovim community for inspiration and feedback
+- All the plugin authors who make Neovim amazing
 
 ---
 
-**Enjoy coding with the warm, cozy feeling of Espresso_Libre! ☕** 
+*Enjoy coding with the warm, inviting colors of Espresso_Libre! ☕* 

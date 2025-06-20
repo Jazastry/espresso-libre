@@ -1,53 +1,78 @@
+-- Espresso_Libre colorscheme for Neovim
+-- Based on the original Espresso Libre TextMate theme by Chris Thomas
+
 local M = {}
 
--- Default configuration
 M.config = {
   transparent = false,
-  italic_comments = true,
-  underline_links = true,
-  disable_nvimtree_bg = false,
   terminal_colors = true,
-  color_overrides = {},
-  group_overrides = {},
+  styles = {
+    comments = { italic = true },
+    keywords = { bold = true },
+    functions = { bold = true },
+    constants = { bold = true },
+    strings = {},
+    variables = {},
+  },
 }
 
--- Setup function to configure the theme
 function M.setup(user_config)
   M.config = vim.tbl_deep_extend("force", M.config, user_config or {})
 end
 
--- Load the theme
 function M.load()
-  -- Clear existing colors
-  vim.cmd("hi clear")
+  if vim.g.colors_name then
+    vim.cmd("hi clear")
+  end
+  
   if vim.fn.exists("syntax_on") then
     vim.cmd("syntax reset")
   end
   
   vim.g.colors_name = "espresso_libre"
+  vim.o.background = "dark"
   
-  local colors = require("espresso_libre.colors")
-  local theme = require("espresso_libre.theme")
+  local colors = require('espresso_libre.colors')
+  local theme = require('espresso_libre.theme')
+  local terminal = require('espresso_libre.terminal')
   
-  -- Apply color overrides
-  if M.config.color_overrides then
-    colors = vim.tbl_deep_extend("force", colors, M.config.color_overrides)
-  end
+  -- Load the theme
+  local highlights, lualine_theme = theme.setup()
   
-  -- Load theme
-  theme.load(colors, M.config)
-  
-  -- Apply group overrides
-  if M.config.group_overrides then
-    for group, opts in pairs(M.config.group_overrides) do
-      vim.api.nvim_set_hl(0, group, opts)
+  -- Apply highlights
+  for group, opts in pairs(highlights) do
+    -- Apply style configurations
+    if group == "Comment" and M.config.styles.comments then
+      opts = vim.tbl_extend("force", opts, M.config.styles.comments)
+    elseif group:match("Keyword") and M.config.styles.keywords then
+      opts = vim.tbl_extend("force", opts, M.config.styles.keywords)
+    elseif group:match("Function") and M.config.styles.functions then
+      opts = vim.tbl_extend("force", opts, M.config.styles.functions)
+    elseif group:match("Constant") and M.config.styles.constants then
+      opts = vim.tbl_extend("force", opts, M.config.styles.constants)
+    elseif group:match("String") and M.config.styles.strings then
+      opts = vim.tbl_extend("force", opts, M.config.styles.strings)
+    elseif group:match("Variable") and M.config.styles.variables then
+      opts = vim.tbl_extend("force", opts, M.config.styles.variables)
     end
+    
+    -- Handle transparency
+    if M.config.transparent then
+      if opts.bg == colors.bg then
+        opts.bg = nil
+      end
+    end
+    
+    vim.api.nvim_set_hl(0, group, opts)
   end
   
-  -- Set terminal colors if enabled
+  -- Setup terminal colors
   if M.config.terminal_colors then
-    require("espresso_libre.terminal").setup(colors)
+    terminal.setup()
   end
 end
+
+-- Automatically load the colorscheme when required
+M.load()
 
 return M 

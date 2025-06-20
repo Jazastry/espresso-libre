@@ -1,297 +1,344 @@
+local colors = require('espresso_libre.colors')
+
 local M = {}
 
-function M.load(colors, config)
-  local transparent = config.transparent
-  local italic_comments = config.italic_comments
-  local underline_links = config.underline_links
-  
-  -- Base highlights
-  local highlights = {
-    -- Editor
-    Normal = { fg = colors.fg, bg = transparent and colors.none or colors.bg },
-    NormalNC = { fg = colors.fg, bg = transparent and colors.none or colors.bg },
-    NormalFloat = { fg = colors.fg, bg = colors.bg_light },
-    FloatBorder = { fg = colors.border, bg = colors.bg_light },
-    ColorColumn = { bg = colors.bg_light },
-    Cursor = { fg = colors.bg, bg = colors.cursor },
-    lCursor = { fg = colors.bg, bg = colors.cursor },
-    CursorIM = { fg = colors.bg, bg = colors.cursor },
-    CursorColumn = { bg = colors.bg_light },
-    CursorLine = { bg = colors.bg_light },
-    Directory = { fg = colors.blue },
-    DiffAdd = { fg = colors.git_add, bg = colors.bg_light },
-    DiffChange = { fg = colors.git_change, bg = colors.bg_light },
-    DiffDelete = { fg = colors.git_delete, bg = colors.bg_light },
-    DiffText = { fg = colors.fg, bg = colors.git_change },
-    EndOfBuffer = { fg = colors.bg },
-    ErrorMsg = { fg = colors.error },
-    VertSplit = { fg = colors.border },
-    WinSeparator = { fg = colors.border },
-    Folded = { fg = colors.fg_darker, bg = colors.bg_light },
-    FoldColumn = { fg = colors.brown_light, bg = transparent and colors.none or colors.bg },
-    SignColumn = { fg = colors.fg_darker, bg = transparent and colors.none or colors.bg },
-    IncSearch = { fg = colors.bg, bg = colors.orange },
-    Substitute = { fg = colors.bg, bg = colors.orange },
-    LineNr = { fg = colors.line_nr },
-    CursorLineNr = { fg = colors.line_nr_current, bold = true },
-    MatchParen = { fg = colors.match_paren, bold = true },
-    ModeMsg = { fg = colors.fg },
-    MsgArea = { fg = colors.fg },
-    MsgSeparator = { fg = colors.border },
-    MoreMsg = { fg = colors.blue },
-    NonText = { fg = colors.brown_light },
-    Pmenu = { fg = colors.fg, bg = colors.pmenu },
-    PmenuSel = { fg = colors.fg, bg = colors.pmenu_sel },
-    PmenuSbar = { bg = colors.brown_light },
-    PmenuThumb = { bg = colors.brown },
-    Question = { fg = colors.blue },
-    QuickFixLine = { bg = colors.visual },
-    Search = { fg = colors.bg, bg = colors.search },
-    SpecialKey = { fg = colors.brown_light },
-    SpellBad = { fg = colors.error, undercurl = true },
-    SpellCap = { fg = colors.warning, undercurl = true },
-    SpellLocal = { fg = colors.info, undercurl = true },
-    SpellRare = { fg = colors.hint, undercurl = true },
-    StatusLine = { fg = colors.fg, bg = colors.statusline },
-    StatusLineNC = { fg = colors.fg_darker, bg = colors.bg_light },
-    TabLine = { fg = colors.fg_darker, bg = colors.tabline },
-    TabLineFill = { bg = colors.tabline },
-    TabLineSel = { fg = colors.fg, bg = colors.bg },
-    Title = { fg = colors.orange, bold = true },
-    Visual = { bg = colors.visual },
-    VisualNOS = { bg = colors.visual },
-    WarningMsg = { fg = colors.warning },
-    Whitespace = { fg = colors.brown_light },
-    WildMenu = { fg = colors.fg, bg = colors.pmenu_sel },
+M.setup = function()
+  local theme = {}
 
-    -- Syntax highlighting
-    Comment = { fg = colors.fg_darker, italic = italic_comments },
-    Constant = { fg = colors.orange },
-    String = { fg = colors.green },
-    Character = { fg = colors.green },
-    Number = { fg = colors.orange },
-    Boolean = { fg = colors.orange },
-    Float = { fg = colors.orange },
-    Identifier = { fg = colors.fg },
-    Function = { fg = colors.blue },
-    Statement = { fg = colors.purple },
-    Conditional = { fg = colors.purple },
-    Repeat = { fg = colors.purple },
-    Label = { fg = colors.purple },
-    Operator = { fg = colors.fg },
-    Keyword = { fg = colors.purple },
-    Exception = { fg = colors.purple },
-    PreProc = { fg = colors.cyan },
-    Include = { fg = colors.cyan },
-    Define = { fg = colors.cyan },
-    Macro = { fg = colors.cyan },
-    PreCondit = { fg = colors.cyan },
-    Type = { fg = colors.yellow },
-    StorageClass = { fg = colors.yellow },
-    Structure = { fg = colors.yellow },
-    Typedef = { fg = colors.yellow },
-    Special = { fg = colors.magenta },
-    SpecialChar = { fg = colors.magenta },
-    Tag = { fg = colors.red },
-    Delimiter = { fg = colors.fg },
-    SpecialComment = { fg = colors.orange, italic = italic_comments },
-    Debug = { fg = colors.red },
-    Underlined = { fg = colors.blue, underline = underline_links },
-    Ignore = { fg = colors.brown_light },
-    Error = { fg = colors.error },
-    Todo = { fg = colors.orange, bold = true },
-
-    -- LSP
-    LspReferenceText = { bg = colors.selection },
-    LspReferenceRead = { bg = colors.selection },
-    LspReferenceWrite = { bg = colors.selection },
-    
-    -- Diagnostics
-    DiagnosticError = { fg = colors.error },
-    DiagnosticWarn = { fg = colors.warning },
-    DiagnosticInfo = { fg = colors.info },
-    DiagnosticHint = { fg = colors.hint },
-    DiagnosticVirtualTextError = { fg = colors.error, bg = colors.bg_light },
-    DiagnosticVirtualTextWarn = { fg = colors.warning, bg = colors.bg_light },
-    DiagnosticVirtualTextInfo = { fg = colors.info, bg = colors.bg_light },
-    DiagnosticVirtualTextHint = { fg = colors.hint, bg = colors.bg_light },
-    DiagnosticUnderlineError = { undercurl = true, sp = colors.error },
-    DiagnosticUnderlineWarn = { undercurl = true, sp = colors.warning },
-    DiagnosticUnderlineInfo = { undercurl = true, sp = colors.info },
-    DiagnosticUnderlineHint = { undercurl = true, sp = colors.hint },
-
-    -- Tree-sitter
-    ["@variable"] = { fg = colors.fg },
-    ["@variable.builtin"] = { fg = colors.red },
-    ["@variable.parameter"] = { fg = colors.fg },
-    ["@variable.member"] = { fg = colors.fg },
-    ["@constant"] = { fg = colors.orange },
-    ["@constant.builtin"] = { fg = colors.orange },
-    ["@constant.macro"] = { fg = colors.cyan },
-    ["@module"] = { fg = colors.yellow },
-    ["@label"] = { fg = colors.purple },
-    ["@string"] = { fg = colors.green },
-    ["@string.documentation"] = { fg = colors.green },
-    ["@string.regexp"] = { fg = colors.orange },
-    ["@string.escape"] = { fg = colors.magenta },
-    ["@string.special"] = { fg = colors.magenta },
-    ["@character"] = { fg = colors.green },
-    ["@character.special"] = { fg = colors.magenta },
-    ["@boolean"] = { fg = colors.orange },
-    ["@number"] = { fg = colors.orange },
-    ["@number.float"] = { fg = colors.orange },
-    ["@type"] = { fg = colors.yellow },
-    ["@type.builtin"] = { fg = colors.yellow },
-    ["@type.definition"] = { fg = colors.yellow },
-    ["@attribute"] = { fg = colors.cyan },
-    ["@property"] = { fg = colors.fg },
-    ["@function"] = { fg = colors.blue },
-    ["@function.builtin"] = { fg = colors.blue },
-    ["@function.call"] = { fg = colors.blue },
-    ["@function.macro"] = { fg = colors.cyan },
-    ["@function.method"] = { fg = colors.blue },
-    ["@function.method.call"] = { fg = colors.blue },
-    ["@constructor"] = { fg = colors.yellow },
-    ["@operator"] = { fg = colors.fg },
-    ["@keyword"] = { fg = colors.purple },
-    ["@keyword.coroutine"] = { fg = colors.purple },
-    ["@keyword.function"] = { fg = colors.purple },
-    ["@keyword.operator"] = { fg = colors.purple },
-    ["@keyword.import"] = { fg = colors.cyan },
-    ["@keyword.type"] = { fg = colors.yellow },
-    ["@keyword.modifier"] = { fg = colors.purple },
-    ["@keyword.repeat"] = { fg = colors.purple },
-    ["@keyword.return"] = { fg = colors.purple },
-    ["@keyword.debug"] = { fg = colors.red },
-    ["@keyword.exception"] = { fg = colors.purple },
-    ["@keyword.conditional"] = { fg = colors.purple },
-    ["@keyword.conditional.ternary"] = { fg = colors.purple },
-    ["@keyword.directive"] = { fg = colors.cyan },
-    ["@keyword.directive.define"] = { fg = colors.cyan },
-    ["@punctuation.delimiter"] = { fg = colors.fg },
-    ["@punctuation.bracket"] = { fg = colors.fg },
-    ["@punctuation.special"] = { fg = colors.magenta },
-    ["@comment"] = { fg = colors.fg_darker, italic = italic_comments },
-    ["@comment.documentation"] = { fg = colors.orange, italic = italic_comments },
-    ["@comment.error"] = { fg = colors.error },
-    ["@comment.warning"] = { fg = colors.warning },
-    ["@comment.todo"] = { fg = colors.orange, bold = true },
-    ["@comment.note"] = { fg = colors.info },
-    ["@markup.strong"] = { bold = true },
-    ["@markup.italic"] = { italic = true },
-    ["@markup.strikethrough"] = { strikethrough = true },
-    ["@markup.underline"] = { underline = true },
-    ["@markup.heading"] = { fg = colors.orange, bold = true },
-    ["@markup.quote"] = { fg = colors.fg_darker, italic = true },
-    ["@markup.math"] = { fg = colors.cyan },
-    ["@markup.link"] = { fg = colors.blue, underline = underline_links },
-    ["@markup.link.label"] = { fg = colors.blue },
-    ["@markup.link.url"] = { fg = colors.cyan, underline = underline_links },
-    ["@markup.raw"] = { fg = colors.green },
-    ["@markup.raw.block"] = { fg = colors.green },
-    ["@markup.list"] = { fg = colors.purple },
-    ["@markup.list.checked"] = { fg = colors.green },
-    ["@markup.list.unchecked"] = { fg = colors.fg_darker },
-    ["@diff.plus"] = { fg = colors.git_add },
-    ["@diff.minus"] = { fg = colors.git_delete },
-    ["@diff.delta"] = { fg = colors.git_change },
-    ["@tag"] = { fg = colors.red },
-    ["@tag.attribute"] = { fg = colors.yellow },
-    ["@tag.delimiter"] = { fg = colors.fg },
-
-    -- Git signs
-    GitSignsAdd = { fg = colors.git_add },
-    GitSignsChange = { fg = colors.git_change },
-    GitSignsDelete = { fg = colors.git_delete },
-    
-    -- Telescope
-    TelescopeNormal = { fg = colors.fg, bg = colors.bg_light },
-    TelescopeBorder = { fg = colors.border, bg = colors.bg_light },
-    TelescopePromptNormal = { fg = colors.fg, bg = colors.bg_lighter },
-    TelescopePromptBorder = { fg = colors.border, bg = colors.bg_lighter },
-    TelescopePromptTitle = { fg = colors.orange, bold = true },
-    TelescopePreviewTitle = { fg = colors.orange, bold = true },
-    TelescopeResultsTitle = { fg = colors.orange, bold = true },
-    TelescopeSelection = { fg = colors.fg, bg = colors.pmenu_sel },
-    TelescopeSelectionCaret = { fg = colors.orange },
-    TelescopeMatching = { fg = colors.orange, bold = true },
-
-    -- NvimTree
-    NvimTreeNormal = { fg = colors.fg, bg = config.disable_nvimtree_bg and colors.none or colors.bg_alt },
-    NvimTreeFolderName = { fg = colors.blue },
-    NvimTreeFolderIcon = { fg = colors.blue },
-    NvimTreeOpenedFolderName = { fg = colors.blue, bold = true },
-    NvimTreeEmptyFolderName = { fg = colors.fg_darker },
-    NvimTreeIndentMarker = { fg = colors.brown_light },
-    NvimTreeVertSplit = { fg = colors.border },
-    NvimTreeRootFolder = { fg = colors.orange, bold = true },
-    NvimTreeSymlink = { fg = colors.cyan },
-    NvimTreeStatuslineNc = { fg = colors.bg_alt, bg = colors.bg_alt },
-    NvimTreeGitDirty = { fg = colors.git_change },
-    NvimTreeGitNew = { fg = colors.git_add },
-    NvimTreeGitDeleted = { fg = colors.git_delete },
-    NvimTreeSpecialFile = { fg = colors.magenta },
-    NvimTreeImageFile = { fg = colors.purple },
-    NvimTreeMarkdownFile = { fg = colors.blue },
-
-    -- Which-key
-    WhichKey = { fg = colors.purple },
-    WhichKeyGroup = { fg = colors.blue },
-    WhichKeyDesc = { fg = colors.fg },
-    WhichKeySeperator = { fg = colors.brown_light },
-    WhichKeyFloat = { bg = colors.bg_light },
-    WhichKeyBorder = { fg = colors.border },
-
-    -- Indent Blankline
-    IndentBlanklineChar = { fg = colors.brown_light },
-    IndentBlanklineContextChar = { fg = colors.brown },
-
-    -- Neo-tree
-    NeoTreeNormal = { fg = colors.fg, bg = config.disable_nvimtree_bg and colors.none or colors.bg_alt },
-    NeoTreeNormalNC = { fg = colors.fg, bg = config.disable_nvimtree_bg and colors.none or colors.bg_alt },
-    NeoTreeDirectoryName = { fg = colors.blue },
-    NeoTreeDirectoryIcon = { fg = colors.blue },
-    NeoTreeRootName = { fg = colors.orange, bold = true },
-    NeoTreeFileName = { fg = colors.fg },
-    NeoTreeFileIcon = { fg = colors.fg },
-    NeoTreeFileNameOpened = { fg = colors.orange },
-    NeoTreeIndentMarker = { fg = colors.brown_light },
-    NeoTreeGitAdded = { fg = colors.git_add },
-    NeoTreeGitDeleted = { fg = colors.git_delete },
-    NeoTreeGitModified = { fg = colors.git_change },
-    NeoTreeGitConflict = { fg = colors.red },
-    NeoTreeGitUntracked = { fg = colors.purple },
-
-    -- Bufferline
-    BufferLineBackground = { fg = colors.fg_darker, bg = colors.tabline },
-    BufferLineBuffer = { fg = colors.fg_darker, bg = colors.tabline },
-    BufferLineBufferSelected = { fg = colors.fg, bg = colors.bg, bold = true },
-    BufferLineBufferVisible = { fg = colors.fg, bg = colors.bg_light },
-    BufferLineCloseButton = { fg = colors.fg_darker, bg = colors.tabline },
-    BufferLineCloseButtonSelected = { fg = colors.red, bg = colors.bg },
-    BufferLineCloseButtonVisible = { fg = colors.fg, bg = colors.bg_light },
-    BufferLineFill = { bg = colors.bg_alt },
-    BufferLineIndicatorSelected = { fg = colors.orange, bg = colors.bg },
-    BufferLineModified = { fg = colors.git_change, bg = colors.tabline },
-    BufferLineModifiedSelected = { fg = colors.git_change, bg = colors.bg },
-    BufferLineModifiedVisible = { fg = colors.git_change, bg = colors.bg_light },
-    BufferLineSeparator = { fg = colors.border, bg = colors.tabline },
-    BufferLineSeparatorSelected = { fg = colors.border, bg = colors.bg },
-    BufferLineSeparatorVisible = { fg = colors.border, bg = colors.bg_light },
-    BufferLineTab = { fg = colors.fg_darker, bg = colors.tabline },
-    BufferLineTabSelected = { fg = colors.fg, bg = colors.bg },
-    BufferLineTabClose = { fg = colors.red, bg = colors.tabline },
-
-    -- Lualine
-    lualine_a_normal = { fg = colors.bg, bg = colors.orange, bold = true },
-    lualine_b_normal = { fg = colors.fg, bg = colors.bg_light },
-    lualine_c_normal = { fg = colors.fg_darker, bg = colors.statusline },
+  -- Editor colors
+  theme.normal = {
+    a = { fg = colors.bg, bg = colors.function_name, gui = "bold" },
+    b = { fg = colors.fg, bg = colors.light_bg },
+    c = { fg = colors.fg, bg = colors.bg },
   }
   
-  -- Apply highlights
-  for group, opts in pairs(highlights) do
-    vim.api.nvim_set_hl(0, group, opts)
-  end
+  theme.insert = {
+    a = { fg = colors.bg, bg = colors.string, gui = "bold" },
+  }
+  
+  theme.visual = {
+    a = { fg = colors.bg, bg = colors.keyword, gui = "bold" },
+  }
+  
+  theme.replace = {
+    a = { fg = colors.bg, bg = colors.constant, gui = "bold" },
+  }
+  
+  theme.command = {
+    a = { fg = colors.bg, bg = colors.library_function, gui = "bold" },
+  }
+  
+  theme.inactive = {
+    a = { fg = colors.method_type, bg = colors.dark_bg },
+    b = { fg = colors.method_type, bg = colors.dark_bg },
+    c = { fg = colors.method_type, bg = colors.dark_bg },
+  }
+
+  -- Main highlight groups
+  local highlights = {
+    -- Editor
+    Normal = { fg = colors.fg, bg = colors.bg },
+    CursorLine = { bg = colors.line_highlight },
+    CursorLineNr = { fg = colors.function_name, bg = colors.line_highlight, bold = true },
+    LineNr = { fg = colors.method_type },
+    SignColumn = { bg = colors.bg },
+    ColorColumn = { bg = colors.line_highlight },
+    Cursor = { fg = colors.bg, bg = colors.caret },
+    
+    -- Visual selection
+    Visual = { bg = colors.selection },
+    VisualNOS = { bg = colors.selection },
+    
+    -- Search
+    Search = { fg = colors.bg, bg = colors.search },
+    IncSearch = { fg = colors.bg, bg = colors.function_name },
+    
+    -- Popup menu
+    Pmenu = { fg = colors.fg, bg = colors.light_bg },
+    PmenuSel = { fg = colors.bg, bg = colors.function_name },
+    PmenuSbar = { bg = colors.border },
+    PmenuThumb = { bg = colors.fg },
+    
+    -- Status line
+    StatusLine = { fg = colors.fg, bg = colors.light_bg },
+    StatusLineNC = { fg = colors.method_type, bg = colors.dark_bg },
+    
+    -- Tab line
+    TabLine = { fg = colors.method_type, bg = colors.dark_bg },
+    TabLineFill = { bg = colors.dark_bg },
+    TabLineSel = { fg = colors.fg, bg = colors.bg },
+    
+    -- Window separators
+    VertSplit = { fg = colors.border },
+    WinSeparator = { fg = colors.border },
+    
+    -- Folds
+    Folded = { fg = colors.method_type, bg = colors.light_bg },
+    FoldColumn = { fg = colors.method_type, bg = colors.bg },
+    
+    -- Diff
+    DiffAdd = { bg = colors.string, fg = colors.bg },
+    DiffChange = { bg = colors.function_name, fg = colors.bg },
+    DiffDelete = { bg = colors.error, fg = colors.error_fg },
+    DiffText = { bg = colors.keyword, fg = colors.bg },
+    
+    -- Spelling
+    SpellBad = { sp = colors.error, undercurl = true },
+    SpellCap = { sp = colors.keyword, undercurl = true },
+    SpellLocal = { sp = colors.library_function, undercurl = true },
+    SpellRare = { sp = colors.constant, undercurl = true },
+    
+    -- Messages
+    ErrorMsg = { fg = colors.error_fg, bg = colors.error },
+    WarningMsg = { fg = colors.function_name },
+    ModeMsg = { fg = colors.fg },
+    MoreMsg = { fg = colors.string },
+    Question = { fg = colors.keyword },
+    
+    -- Syntax highlighting
+    Comment = { fg = colors.comment, italic = true },
+    
+    Constant = { fg = colors.constant, bold = true },
+    String = { fg = colors.string },
+    Character = { fg = colors.string },
+    Number = { fg = colors.number },
+    Boolean = { fg = colors.constant_builtin, bold = true },
+    Float = { fg = colors.number },
+    
+    Identifier = { fg = colors.variable },
+    Function = { fg = colors.function_name, bold = true },
+    
+    Statement = { fg = colors.keyword, bold = true },
+    Conditional = { fg = colors.keyword, bold = true },
+    Repeat = { fg = colors.keyword, bold = true },
+    Label = { fg = colors.keyword, bold = true },
+    Operator = { fg = colors.operator },
+    Keyword = { fg = colors.keyword, bold = true },
+    Exception = { fg = colors.keyword, bold = true },
+    
+    PreProc = { fg = colors.preprocessor },
+    Include = { fg = colors.preprocessor_directive, bold = true },
+    Define = { fg = colors.preprocessor_directive, bold = true },
+    Macro = { fg = colors.preprocessor_directive, bold = true },
+    PreCondit = { fg = colors.preprocessor_directive, bold = true },
+    
+    Type = { fg = colors.library_object, bold = true, underline = true },
+    StorageClass = { fg = colors.keyword, bold = true },
+    Structure = { fg = colors.library_object, bold = true },
+    Typedef = { fg = colors.library_object, bold = true },
+    
+    Special = { fg = colors.string_escape },
+    SpecialChar = { fg = colors.string_escape },
+    Tag = { fg = colors.markup_tag, bold = true },
+    Delimiter = { fg = colors.fg },
+    SpecialComment = { fg = colors.comment, italic = true },
+    Debug = { fg = colors.function_name },
+    
+    Underlined = { fg = colors.keyword, underline = true },
+    Ignore = { fg = colors.method_type },
+    Error = { fg = colors.error_fg, bg = colors.error },
+    Todo = { fg = colors.bg, bg = colors.function_name, bold = true },
+    
+    -- Tree-sitter highlights
+    ["@variable"] = { fg = colors.variable },
+    ["@variable.builtin"] = { fg = colors.library_variable, bold = true },
+    ["@variable.parameter"] = { fg = colors.variable, italic = true },
+    ["@variable.member"] = { fg = colors.variable },
+    
+    ["@constant"] = { fg = colors.constant, bold = true },
+    ["@constant.builtin"] = { fg = colors.constant_builtin, bold = true },
+    ["@constant.macro"] = { fg = colors.preprocessor_directive, bold = true },
+    
+    ["@module"] = { fg = colors.library_object, bold = true },
+    ["@label"] = { fg = colors.keyword, bold = true },
+    
+    ["@string"] = { fg = colors.string },
+    ["@string.escape"] = { fg = colors.string_escape },
+    ["@string.special"] = { fg = colors.string_escape },
+    ["@string.regexp"] = { fg = colors.string_escape },
+    
+    ["@character"] = { fg = colors.string },
+    ["@character.special"] = { fg = colors.string_escape },
+    
+    ["@boolean"] = { fg = colors.constant_builtin, bold = true },
+    ["@number"] = { fg = colors.number },
+    ["@number.float"] = { fg = colors.number },
+    
+    ["@function"] = { fg = colors.function_name, bold = true },
+    ["@function.builtin"] = { fg = colors.library_function, bold = true },
+    ["@function.call"] = { fg = colors.function_name, bold = true },
+    ["@function.macro"] = { fg = colors.preprocessor_directive, bold = true },
+    
+    ["@function.method"] = { fg = colors.function_name, bold = true },
+    ["@function.method.call"] = { fg = colors.function_name, bold = true },
+    
+    ["@constructor"] = { fg = colors.library_object, bold = true },
+    ["@operator"] = { fg = colors.operator },
+    
+    ["@keyword"] = { fg = colors.keyword, bold = true },
+    ["@keyword.function"] = { fg = colors.keyword, bold = true },
+    ["@keyword.operator"] = { fg = colors.keyword, bold = true },
+    ["@keyword.return"] = { fg = colors.keyword, bold = true },
+    ["@keyword.conditional"] = { fg = colors.keyword, bold = true },
+    ["@keyword.repeat"] = { fg = colors.keyword, bold = true },
+    ["@keyword.exception"] = { fg = colors.keyword, bold = true },
+    ["@keyword.import"] = { fg = colors.preprocessor_directive, bold = true },
+    
+    ["@type"] = { fg = colors.library_object, bold = true },
+    ["@type.builtin"] = { fg = colors.library_object, bold = true },
+    ["@type.definition"] = { fg = colors.library_object, bold = true, underline = true },
+    
+    ["@attribute"] = { fg = colors.markup_xml },
+    ["@property"] = { fg = colors.variable },
+    ["@field"] = { fg = colors.variable },
+    
+    ["@parameter"] = { fg = colors.variable, italic = true },
+    ["@parameter.reference"] = { fg = colors.variable, italic = true },
+    
+    ["@comment"] = { fg = colors.comment, italic = true },
+    ["@comment.documentation"] = { fg = colors.comment, italic = true },
+    
+    ["@tag"] = { fg = colors.markup_tag },
+    ["@tag.attribute"] = { fg = colors.variable, italic = true },
+    ["@tag.delimiter"] = { fg = colors.markup_tag },
+    
+    ["@markup.strong"] = { bold = true },
+    ["@markup.italic"] = { italic = true },
+    ["@markup.underline"] = { underline = true },
+    ["@markup.strikethrough"] = { strikethrough = true },
+    ["@markup.heading"] = { fg = colors.function_name, bold = true },
+    ["@markup.link"] = { fg = colors.keyword, underline = true },
+    ["@markup.link.url"] = { fg = colors.string, underline = true },
+    ["@markup.list"] = { fg = colors.keyword },
+    ["@markup.quote"] = { fg = colors.comment, italic = true },
+    ["@markup.raw"] = { fg = colors.string },
+    
+    -- LSP semantic tokens
+    ["@lsp.type.class"] = { fg = colors.library_object, bold = true },
+    ["@lsp.type.decorator"] = { fg = colors.preprocessor_directive },
+    ["@lsp.type.enum"] = { fg = colors.library_object, bold = true },
+    ["@lsp.type.enumMember"] = { fg = colors.constant, bold = true },
+    ["@lsp.type.function"] = { fg = colors.function_name, bold = true },
+    ["@lsp.type.interface"] = { fg = colors.library_object, bold = true },
+    ["@lsp.type.macro"] = { fg = colors.preprocessor_directive, bold = true },
+    ["@lsp.type.method"] = { fg = colors.function_name, bold = true },
+    ["@lsp.type.namespace"] = { fg = colors.library_object, bold = true },
+    ["@lsp.type.parameter"] = { fg = colors.variable, italic = true },
+    ["@lsp.type.property"] = { fg = colors.variable },
+    ["@lsp.type.struct"] = { fg = colors.library_object, bold = true },
+    ["@lsp.type.type"] = { fg = colors.library_object, bold = true },
+    ["@lsp.type.typeParameter"] = { fg = colors.library_object, bold = true },
+    ["@lsp.type.variable"] = { fg = colors.variable },
+    
+    -- LSP diagnostics
+    DiagnosticError = { fg = colors.error },
+    DiagnosticWarn = { fg = colors.function_name },
+    DiagnosticInfo = { fg = colors.keyword },
+    DiagnosticHint = { fg = colors.string },
+    
+    DiagnosticUnderlineError = { sp = colors.error, undercurl = true },
+    DiagnosticUnderlineWarn = { sp = colors.function_name, undercurl = true },
+    DiagnosticUnderlineInfo = { sp = colors.keyword, undercurl = true },
+    DiagnosticUnderlineHint = { sp = colors.string, undercurl = true },
+    
+    -- LSP references
+    LspReferenceText = { bg = colors.line_highlight },
+    LspReferenceRead = { bg = colors.line_highlight },
+    LspReferenceWrite = { bg = colors.line_highlight },
+    
+    -- Plugin support
+    
+    -- Telescope
+    TelescopeNormal = { fg = colors.fg, bg = colors.bg },
+    TelescopeBorder = { fg = colors.border, bg = colors.bg },
+    TelescopePromptNormal = { fg = colors.fg, bg = colors.light_bg },
+    TelescopePromptBorder = { fg = colors.border, bg = colors.light_bg },
+    TelescopePromptTitle = { fg = colors.bg, bg = colors.function_name },
+    TelescopePreviewTitle = { fg = colors.bg, bg = colors.string },
+    TelescopeResultsTitle = { fg = colors.bg, bg = colors.keyword },
+    TelescopeSelection = { fg = colors.fg, bg = colors.line_highlight },
+    TelescopeSelectionCaret = { fg = colors.function_name, bg = colors.line_highlight },
+    TelescopeMatching = { fg = colors.function_name, bold = true },
+    
+    -- NvimTree
+    NvimTreeNormal = { fg = colors.fg, bg = colors.dark_bg },
+    NvimTreeNormalNC = { fg = colors.fg, bg = colors.dark_bg },
+    NvimTreeRootFolder = { fg = colors.function_name, bold = true },
+    NvimTreeFolderName = { fg = colors.keyword },
+    NvimTreeFolderIcon = { fg = colors.keyword },
+    NvimTreeEmptyFolderName = { fg = colors.method_type },
+    NvimTreeOpenedFolderName = { fg = colors.keyword, bold = true },
+    NvimTreeExecFile = { fg = colors.string, bold = true },
+    NvimTreeOpenedFile = { fg = colors.fg, bold = true },
+    NvimTreeSpecialFile = { fg = colors.function_name, bold = true },
+    NvimTreeImageFile = { fg = colors.constant },
+    NvimTreeMarkdownFile = { fg = colors.keyword },
+    NvimTreeIndentMarker = { fg = colors.border },
+    NvimTreeGitDirty = { fg = colors.function_name },
+    NvimTreeGitNew = { fg = colors.string },
+    NvimTreeGitDeleted = { fg = colors.error },
+    NvimTreeGitStaged = { fg = colors.string },
+    NvimTreeGitMerge = { fg = colors.constant },
+    NvimTreeGitRenamed = { fg = colors.keyword },
+    
+    -- GitSigns
+    GitSignsAdd = { fg = colors.string },
+    GitSignsChange = { fg = colors.function_name },
+    GitSignsDelete = { fg = colors.error },
+    GitSignsAddNr = { fg = colors.string },
+    GitSignsChangeNr = { fg = colors.function_name },
+    GitSignsDeleteNr = { fg = colors.error },
+    GitSignsAddLn = { bg = colors.string, fg = colors.bg },
+    GitSignsChangeLn = { bg = colors.function_name, fg = colors.bg },
+    GitSignsDeleteLn = { bg = colors.error, fg = colors.error_fg },
+    
+    -- WhichKey
+    WhichKey = { fg = colors.function_name, bold = true },
+    WhichKeyGroup = { fg = colors.keyword },
+    WhichKeyDesc = { fg = colors.fg },
+    WhichKeySeperator = { fg = colors.method_type },
+    WhichKeyFloat = { bg = colors.light_bg },
+    WhichKeyBorder = { fg = colors.border, bg = colors.light_bg },
+    
+    -- BufferLine
+    BufferLineIndicatorSelected = { fg = colors.function_name },
+    BufferLineFill = { bg = colors.dark_bg },
+    BufferLineBackground = { fg = colors.method_type, bg = colors.dark_bg },
+    BufferLineBufferSelected = { fg = colors.fg, bg = colors.bg, bold = true },
+    BufferLineBufferVisible = { fg = colors.fg, bg = colors.light_bg },
+    BufferLineCloseButton = { fg = colors.method_type, bg = colors.dark_bg },
+    BufferLineCloseButtonSelected = { fg = colors.error, bg = colors.bg },
+    BufferLineCloseButtonVisible = { fg = colors.method_type, bg = colors.light_bg },
+    
+    -- Indent Blankline
+    IndentBlanklineChar = { fg = colors.border },
+    IndentBlanklineContextChar = { fg = colors.function_name },
+    
+    -- Leap
+    LeapMatch = { fg = colors.bg, bg = colors.function_name, bold = true },
+    LeapLabelPrimary = { fg = colors.bg, bg = colors.function_name, bold = true },
+    LeapLabelSecondary = { fg = colors.bg, bg = colors.string, bold = true },
+    
+    -- Notify
+    NotifyBackground = { bg = colors.bg },
+    NotifyERRORBorder = { fg = colors.error },
+    NotifyWARNBorder = { fg = colors.function_name },
+    NotifyINFOBorder = { fg = colors.keyword },
+    NotifyDEBUGBorder = { fg = colors.method_type },
+    NotifyTRACEBorder = { fg = colors.constant },
+    NotifyERRORIcon = { fg = colors.error },
+    NotifyWARNIcon = { fg = colors.function_name },
+    NotifyINFOIcon = { fg = colors.keyword },
+    NotifyDEBUGIcon = { fg = colors.method_type },
+    NotifyTRACEIcon = { fg = colors.constant },
+    NotifyERRORTitle = { fg = colors.error },
+    NotifyWARNTitle = { fg = colors.function_name },
+    NotifyINFOTitle = { fg = colors.keyword },
+    NotifyDEBUGTitle = { fg = colors.method_type },
+    NotifyTRACETitle = { fg = colors.constant },
+  }
+
+  return highlights, theme
 end
 
 return M 
