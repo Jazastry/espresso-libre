@@ -102,14 +102,14 @@ require("espresso_libre").load()
 
 | Color | Hex | Usage |
 |-------|-----|-------|
-| ![#2A1B16](https://via.placeholder.com/15/2A1B16/000000?text=+) | `#2A1B16` | Background |
-| ![#E8D5C4](https://via.placeholder.com/15/E8D5C4/000000?text=+) | `#E8D5C4` | Foreground |
-| ![#D89F55](https://via.placeholder.com/15/D89F55/000000?text=+) | `#D89F55` | Caramel (Accent) |
-| ![#6B4423](https://via.placeholder.com/15/6B4423/000000?text=+) | `#6B4423` | Brown |
-| ![#8AAE72](https://via.placeholder.com/15/8AAE72/000000?text=+) | `#8AAE72` | Green (Strings) |
-| ![#6B9BD1](https://via.placeholder.com/15/6B9BD1/000000?text=+) | `#6B9BD1` | Blue (Functions) |
-| ![#B389C4](https://via.placeholder.com/15/B389C4/000000?text=+) | `#B389C4` | Purple (Keywords) |
-| ![#E8B563](https://via.placeholder.com/15/E8B563/000000?text=+) | `#E8B563` | Yellow (Types) |
+| ![#2a211c](https://via.placeholder.com/15/2a211c/000000?text=+) | `#2a211c` | Background |
+| ![#bdae9d](https://via.placeholder.com/15/bdae9d/000000?text=+) | `#bdae9d` | Foreground |
+| ![#ff9358](https://via.placeholder.com/15/ff9358/000000?text=+) | `#ff9358` | Orange (Functions/Accent) |
+| ![#049b0a](https://via.placeholder.com/15/049b0a/000000?text=+) | `#049b0a` | Green (Strings) |
+| ![#43a8ed](https://via.placeholder.com/15/43a8ed/000000?text=+) | `#43a8ed` | Blue (Keywords) |
+| ![#ffcc02](https://via.placeholder.com/15/ffcc02/000000?text=+) | `#ffcc02` | Yellow (Types) |
+| ![#d90429](https://via.placeholder.com/15/d90429/000000?text=+) | `#d90429` | Red (Errors) |
+| ![#6b5a4d](https://via.placeholder.com/15/6b5a4d/000000?text=+) | `#6b5a4d` | Muted Brown (Line Numbers) |
 
 ## 🔌 Plugin Support
 

@@ -1,68 +1,68 @@
 -- Espresso_Libre color palette
--- Based on warm coffee and brown tones characteristic of the Espresso_Libre theme
+-- Based on the authentic Espresso_Libre VSCode theme colors
 
 local colors = {
-  -- Background colors
-  bg = "#2A1B16",           -- Dark coffee background
-  bg_alt = "#1F1410",       -- Darker background for sidebars
-  bg_light = "#3D2B23",     -- Lighter background for panels
-  bg_lighter = "#4A3529",   -- Even lighter for selections
+  -- Background colors (from authentic theme)
+  bg = "#2a211c",           -- Authentic dark brown background
+  bg_alt = "#1f1813",       -- Darker background for sidebars
+  bg_light = "#32271f",     -- Lighter background for panels
+  bg_lighter = "#3a2f26",   -- Even lighter for selections
   
-  -- Foreground colors
-  fg = "#E8D5C4",           -- Cream foreground
-  fg_dark = "#D4C1B0",      -- Darker foreground
-  fg_darker = "#C0AE9D",    -- Even darker for comments
+  -- Foreground colors (from authentic theme)
+  fg = "#bdae9d",           -- Authentic beige foreground
+  fg_dark = "#a8998a",      -- Darker foreground
+  fg_darker = "#8c7d6e",    -- Even darker for comments
   
   -- Coffee brown variations
   brown = "#6B4423",        -- Primary brown
-  brown_light = "#8A5A35",  -- Light brown
-  brown_dark = "#4D2F1A",   -- Dark brown
-  brown_darker = "#362014", -- Darker brown
+  brown_light = "#8a6648",  -- Light brown
+  brown_dark = "#4a3424",   -- Dark brown
+  brown_darker = "#362619", -- Darker brown
   
-  -- Accent colors inspired by espresso
-  cream = "#F4E6D7",        -- Light cream
-  caramel = "#D89F55",      -- Caramel/golden highlights
+  -- Accent colors from authentic theme
+  cream = "#d6c7b6",        -- Light cream
+  caramel = "#ff9358",      -- Orange/caramel from authentic theme
   coffee = "#724E2C",       -- Coffee brown
   espresso = "#462B2B",     -- Deep espresso
   mocha = "#6F4827",        -- Mocha brown
   
-  -- Syntax highlighting colors
-  red = "#E85D4A",          -- Error red with brown undertone
-  orange = "#F28B54",       -- Orange with warmth
-  yellow = "#E8B563",       -- Warm yellow
-  green = "#8AAE72",        -- Muted green
-  cyan = "#7BBAB5",         -- Muted cyan
-  blue = "#6B9BD1",         -- Soft blue
-  purple = "#B389C4",       -- Muted purple
-  magenta = "#D18EC2",      -- Soft magenta
+  -- Syntax highlighting colors (from authentic theme)
+  red = "#d90429",          -- Error red
+  orange = "#ff9358",       -- Orange (functions in authentic theme)
+  yellow = "#ffcc02",       -- Yellow
+  green = "#049b0a",        -- Green (strings in authentic theme) 
+  cyan = "#43a8ed",         -- Cyan/blue (keywords in authentic theme)
+  blue = "#43a8ed",         -- Blue (same as cyan for consistency)
+  purple = "#43a8ed",       -- Purple (keywords)
+  magenta = "#d18ec2",      -- Magenta
   
   -- UI specific colors
-  border = "#5A3F2E",       -- Border color
-  selection = "#5D4037",    -- Selection background
-  search = "#8D6E63",       -- Search highlight
-  match_paren = "#BCAAA4",  -- Matching parentheses
+  border = "#4a3f36",       -- Border color
+  selection = "#3a2f26",    -- Selection background
+  search = "#ff9358",       -- Search highlight (using orange)
+  match_paren = "#bdae9d",  -- Matching parentheses
   
   -- Git colors
-  git_add = "#81C784",      -- Git addition
-  git_change = "#FFB74D",   -- Git modification
-  git_delete = "#E57373",   -- Git deletion
+  git_add = "#049b0a",      -- Git addition (using theme green)
+  git_change = "#ff9358",   -- Git modification (using theme orange)
+  git_delete = "#d90429",   -- Git deletion (using theme red)
   
   -- Diagnostic colors
-  error = "#E85D4A",        -- Error
-  warning = "#FFB74D",      -- Warning
-  info = "#6B9BD1",         -- Info
-  hint = "#8AAE72",         -- Hint
+  error = "#d90429",        -- Error (using theme red)
+  warning = "#ffcc02",      -- Warning (using theme yellow)
+  info = "#43a8ed",         -- Info (using theme blue)
+  hint = "#049b0a",         -- Hint (using theme green)
   
   -- Special colors
   none = "NONE",
-  cursor = "#F4E6D7",       -- Cursor color
-  line_nr = "#8A5A35",      -- Line numbers
-  line_nr_current = "#D89F55", -- Current line number
-  visual = "#5D4037",       -- Visual selection
-  pmenu = "#3D2B23",        -- Popup menu background
-  pmenu_sel = "#5A3F2E",    -- Popup menu selection
-  statusline = "#3D2B23",   -- Status line
-  tabline = "#2A1B16",      -- Tab line
+  cursor = "#bdae9d",       -- Cursor color (using foreground)
+  line_nr = "#6b5a4d",      -- Line numbers (muted brown)
+  line_nr_current = "#ff9358", -- Current line number (using orange)
+  visual = "#3a2f26",       -- Visual selection
+  pmenu = "#32271f",        -- Popup menu background
+  pmenu_sel = "#3a2f26",    -- Popup menu selection
+  statusline = "#32271f",   -- Status line
+  tabline = "#2a211c",      -- Tab line
 }
 
 return colors 
