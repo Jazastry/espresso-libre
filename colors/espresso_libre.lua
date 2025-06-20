@@ -210,6 +210,10 @@ highlight("Parentheses", { fg = colors.fg })
 vim.cmd("syntax match ReactHook /\\<use[A-Z][a-zA-Z0-9]*\\>/")
 highlight("ReactHook", { fg = colors.function_name, style = "bold" })
 
+-- Specific keyword highlighting for import/export/const
+vim.cmd("syntax keyword ImportExportKeywords import export const let var")
+highlight("ImportExportKeywords", { fg = colors.function_name, style = "bold" })
+
 -- Tree-sitter fallbacks
 highlight("@punctuation.bracket", { fg = colors.fg })
 highlight("@punctuation.delimiter", { fg = colors.fg }) 
