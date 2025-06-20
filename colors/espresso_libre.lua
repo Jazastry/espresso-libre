@@ -122,7 +122,7 @@ highlight("Question", { fg = colors.keyword })
 
 -- Syntax highlighting
 highlight("Comment", { fg = colors.comment, style = "italic" })
-highlight("Constant", { fg = colors.constant, style = "bold" })
+highlight("Constant", { fg = colors.library_object, style = "bold" })
 highlight("String", { fg = colors.string })
 highlight("Character", { fg = colors.string })
 highlight("Number", { fg = colors.number })
@@ -142,10 +142,10 @@ highlight("Include", { fg = colors.preprocessor_directive, style = "bold" })
 highlight("Define", { fg = colors.preprocessor_directive, style = "bold" })
 highlight("Macro", { fg = colors.preprocessor_directive, style = "bold" })
 highlight("PreCondit", { fg = colors.preprocessor_directive, style = "bold" })
-highlight("Type", { fg = colors.library_object, style = "bold,underline" })
+highlight("Type", { fg = colors.constant, style = "bold,underline" })
 highlight("StorageClass", { fg = colors.keyword, style = "bold" })
-highlight("Structure", { fg = colors.library_object, style = "bold" })
-highlight("Typedef", { fg = colors.library_object, style = "bold" })
+highlight("Structure", { fg = colors.constant, style = "bold" })
+highlight("Typedef", { fg = colors.constant, style = "bold" })
 highlight("Special", { fg = colors.string_escape })
 highlight("SpecialChar", { fg = colors.string_escape })
 highlight("Tag", { fg = colors.markup_tag, style = "bold" })
@@ -193,4 +193,27 @@ vim.g.terminal_color_11 = "#FFFF99"
 vim.g.terminal_color_12 = colors.library_function
 vim.g.terminal_color_13 = colors.library_object
 vim.g.terminal_color_14 = "#7FFFD4"
-vim.g.terminal_color_15 = "#FFFFFF" 
+vim.g.terminal_color_15 = "#FFFFFF"
+
+-- Bracket-specific highlighting using syntax groups
+-- Define syntax groups for specific bracket types
+vim.cmd("syntax match CurlyBraces /[{}]/")
+vim.cmd("syntax match SquareBrackets /[\\[\\]]/")
+vim.cmd("syntax match Parentheses /[()]/")
+
+-- Apply colors to bracket syntax groups
+highlight("CurlyBraces", { fg = colors.function_name })
+highlight("SquareBrackets", { fg = colors.constant_builtin })
+highlight("Parentheses", { fg = colors.fg })
+
+-- Hook-specific highlighting for React/JavaScript
+vim.cmd("syntax match ReactHook /\\<use[A-Z][a-zA-Z0-9]*\\>/")
+highlight("ReactHook", { fg = colors.function_name, style = "bold" })
+
+-- Specific keyword highlighting for import/export/const
+vim.cmd("syntax keyword ImportExportKeywords import export const let var")
+highlight("ImportExportKeywords", { fg = colors.function_name, style = "bold" })
+
+-- Tree-sitter fallbacks
+highlight("@punctuation.bracket", { fg = colors.fg })
+highlight("@punctuation.delimiter", { fg = colors.fg }) 
