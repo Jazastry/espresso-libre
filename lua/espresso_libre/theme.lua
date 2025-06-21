@@ -98,7 +98,7 @@ M.setup = function()
     -- Syntax highlighting
     Comment = { fg = colors.comment, italic = true },
     
-    Constant = { fg = colors.library_object, bold = true },
+    Constant = { fg = colors.constant, bold = true },
     String = { fg = colors.string },
     Character = { fg = colors.string },
     Number = { fg = colors.number },
@@ -122,10 +122,10 @@ M.setup = function()
     Macro = { fg = colors.preprocessor_directive, bold = true },
     PreCondit = { fg = colors.preprocessor_directive, bold = true },
     
-    Type = { fg = colors.constant, bold = true, underline = true },
+    Type = { fg = colors.library_object, bold = true, underline = true },
     StorageClass = { fg = colors.keyword, bold = true },
-    Structure = { fg = colors.constant, bold = true },
-    Typedef = { fg = colors.constant, bold = true },
+    Structure = { fg = colors.library_object, bold = true },
+    Typedef = { fg = colors.library_object, bold = true },
     
     Special = { fg = colors.string_escape },
     SpecialChar = { fg = colors.string_escape },
@@ -144,12 +144,14 @@ M.setup = function()
     ["@variable.builtin"] = { fg = colors.library_variable, bold = true },
     ["@variable.parameter"] = { fg = colors.variable, italic = true },
     ["@variable.member"] = { fg = colors.variable },
+    ["@variable.typescript"] = { fg = colors.variable },
+    ["@variable.parameter.typescript"] = { fg = colors.variable, italic = true },
     
-    ["@constant"] = { fg = colors.library_object, bold = true },
+    ["@constant"] = { fg = colors.constant, bold = true },
     ["@constant.builtin"] = { fg = colors.constant_builtin, bold = true },
     ["@constant.macro"] = { fg = colors.preprocessor_directive, bold = true },
     
-    ["@module"] = { fg = colors.constant, bold = true },
+    ["@module"] = { fg = colors.library_object, bold = true },
     ["@label"] = { fg = colors.keyword, bold = true },
     
     ["@string"] = { fg = colors.string },
@@ -175,12 +177,6 @@ M.setup = function()
     ["@constructor"] = { fg = colors.library_object, bold = true },
     ["@operator"] = { fg = colors.operator },
     
-    -- React/JavaScript hooks (specific to hook names)
-    ["@function.call.javascript"] = { fg = colors.function_name, bold = true },
-    ["@function.call.typescript"] = { fg = colors.function_name, bold = true },
-    ["@function.call.javascriptreact"] = { fg = colors.function_name, bold = true },
-    ["@function.call.typescriptreact"] = { fg = colors.function_name, bold = true },
-    
     ["@keyword"] = { fg = colors.keyword, bold = true },
     ["@keyword.function"] = { fg = colors.keyword, bold = true },
     ["@keyword.operator"] = { fg = colors.keyword, bold = true },
@@ -188,13 +184,12 @@ M.setup = function()
     ["@keyword.conditional"] = { fg = colors.keyword, bold = true },
     ["@keyword.repeat"] = { fg = colors.keyword, bold = true },
     ["@keyword.exception"] = { fg = colors.keyword, bold = true },
-    ["@keyword.import"] = { fg = colors.function_name, bold = true },
-    ["@keyword.export"] = { fg = colors.function_name, bold = true },
-    ["@keyword.storage"] = { fg = colors.function_name, bold = true },
-    
-    ["@type"] = { fg = colors.constant, bold = true },
-    ["@type.builtin"] = { fg = colors.constant, bold = true },
-    ["@type.definition"] = { fg = colors.constant, bold = true, underline = true },
+    ["@keyword.import"] = { fg = colors.preprocessor_directive, bold = true },
+    ["@keyword.import.typescript"] = { fg = colors.preprocessor_directive, bold = true },
+
+    ["@type"] = { fg = colors.library_object, bold = true },
+    ["@type.builtin"] = { fg = colors.library_object, bold = true },
+    ["@type.definition"] = { fg = colors.library_object, bold = true, underline = true },
     
     ["@attribute"] = { fg = colors.markup_xml },
     ["@property"] = { fg = colors.variable },
@@ -222,20 +217,20 @@ M.setup = function()
     ["@markup.raw"] = { fg = colors.string },
     
     -- LSP semantic tokens
-    ["@lsp.type.class"] = { fg = colors.constant, bold = true },
+    ["@lsp.type.class"] = { fg = colors.library_object, bold = true },
     ["@lsp.type.decorator"] = { fg = colors.preprocessor_directive },
-    ["@lsp.type.enum"] = { fg = colors.constant, bold = true },
-    ["@lsp.type.enumMember"] = { fg = colors.library_object, bold = true },
+    ["@lsp.type.enum"] = { fg = colors.library_object, bold = true },
+    ["@lsp.type.enumMember"] = { fg = colors.constant, bold = true },
     ["@lsp.type.function"] = { fg = colors.function_name, bold = true },
-    ["@lsp.type.interface"] = { fg = colors.constant, bold = true },
+    ["@lsp.type.interface"] = { fg = colors.library_object, bold = true },
     ["@lsp.type.macro"] = { fg = colors.preprocessor_directive, bold = true },
     ["@lsp.type.method"] = { fg = colors.function_name, bold = true },
-    ["@lsp.type.namespace"] = { fg = colors.constant, bold = true },
+    ["@lsp.type.namespace"] = { fg = colors.library_object, bold = true },
     ["@lsp.type.parameter"] = { fg = colors.variable, italic = true },
     ["@lsp.type.property"] = { fg = colors.variable },
-    ["@lsp.type.struct"] = { fg = colors.constant, bold = true },
-    ["@lsp.type.type"] = { fg = colors.constant, bold = true },
-    ["@lsp.type.typeParameter"] = { fg = colors.constant, bold = true },
+    ["@lsp.type.struct"] = { fg = colors.library_object, bold = true },
+    ["@lsp.type.type"] = { fg = colors.library_object, bold = true },
+    ["@lsp.type.typeParameter"] = { fg = colors.library_object, bold = true },
     ["@lsp.type.variable"] = { fg = colors.variable },
     
     -- LSP diagnostics
@@ -344,68 +339,7 @@ M.setup = function()
     NotifyINFOTitle = { fg = colors.keyword },
     NotifyDEBUGTitle = { fg = colors.method_type },
     NotifyTRACETitle = { fg = colors.constant },
-    
-    -- Bracket-specific highlighting
-    -- Punctuation and brackets (Tree-sitter)
-    ["@punctuation.bracket"] = { fg = colors.fg },  -- Default brackets (parentheses)
-    ["@punctuation.delimiter"] = { fg = colors.fg },  -- Commas, semicolons, etc.
-    
-    -- Specific bracket overrides (if supported by parser)
-    ["@punctuation.special"] = { fg = colors.function_name },  -- Special punctuation
-    
-    -- Legacy vim syntax for brackets (using syntax matching)
-    Delimiter = { fg = colors.fg },  -- Default delimiters
   }
-
-  -- Setup bracket-specific highlighting using syntax groups
-  -- This works more reliably than Tree-sitter for bracket colors
-  vim.api.nvim_create_autocmd("Syntax", {
-    pattern = "*",
-    callback = function()
-      -- Define syntax groups for specific bracket types
-      vim.cmd([[
-        " Curly braces {} - yellow/orange
-        syntax match CurlyBraces /[{}]/
-        " Square brackets [] - magenta/purple  
-        syntax match SquareBrackets /[\[\]]/
-        " Parentheses () - default foreground
-        syntax match Parentheses /[()]/
-      ]])
-      
-      -- Apply colors to the syntax groups
-      vim.api.nvim_set_hl(0, "CurlyBraces", { fg = colors.function_name })
-      vim.api.nvim_set_hl(0, "SquareBrackets", { fg = colors.constant_builtin }) 
-      vim.api.nvim_set_hl(0, "Parentheses", { fg = colors.fg })
-    end,
-  })
-
-  -- Setup hook-specific highlighting for React/JavaScript
-  vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
-    callback = function()
-      -- Define syntax groups for React hooks (functions starting with "use")
-      vim.cmd([[
-        syntax match ReactHook /\<use[A-Z][a-zA-Z0-9]*\>/
-      ]])
-      
-      -- Apply orange color to hook names
-      vim.api.nvim_set_hl(0, "ReactHook", { fg = colors.function_name, bold = true })
-    end,
-  })
-
-  -- Setup specific keyword highlighting for import/export/const
-  vim.api.nvim_create_autocmd("Syntax", {
-    pattern = "*",
-    callback = function()
-      -- Define syntax groups for specific keywords
-      vim.cmd([[
-        syntax keyword ImportExportKeywords import export const let var
-      ]])
-      
-      -- Apply orange color to these keywords
-      vim.api.nvim_set_hl(0, "ImportExportKeywords", { fg = colors.function_name, bold = true })
-    end,
-  })
 
   return highlights, theme
 end

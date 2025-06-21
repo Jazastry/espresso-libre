@@ -24,7 +24,7 @@ local colors = {
   comment = "#0066FF",           -- Comment (blue)
   keyword = "#43A8ED",           -- Keyword, storage (light blue)
   number = "#44AA43",            -- Number (green)
-  constant = "#C5656B",          -- User-defined constant (red/pink)
+  constant = "#318495",          -- User-defined constant (teal)
   constant_builtin = "#585CF6",  -- Built-in constant (purple)
   variable = "#318495",          -- Variable (teal)
   string = "#049B0A",            -- String (green)
@@ -51,8 +51,8 @@ local colors = {
   dark_bg = "#1A120F",           -- Darker background
   light_bg = "#4A413C",          -- Lighter background
   border = "#5A514C",            -- Border color
-  search = "#FFD700",            -- Search highlight (gold)
-  match_paren = "#FF6B6B",       -- Matching parentheses (red)
+  search = "#889AFF",            -- Search highlight (use caret color)
+  match_paren = "#889AFF",       -- Matching parentheses (use caret color)
 }
 
 -- Function to set highlight groups
@@ -122,7 +122,7 @@ highlight("Question", { fg = colors.keyword })
 
 -- Syntax highlighting
 highlight("Comment", { fg = colors.comment, style = "italic" })
-highlight("Constant", { fg = colors.library_object, style = "bold" })
+highlight("Constant", { fg = colors.constant, style = "bold" })
 highlight("String", { fg = colors.string })
 highlight("Character", { fg = colors.string })
 highlight("Number", { fg = colors.number })
@@ -142,10 +142,10 @@ highlight("Include", { fg = colors.preprocessor_directive, style = "bold" })
 highlight("Define", { fg = colors.preprocessor_directive, style = "bold" })
 highlight("Macro", { fg = colors.preprocessor_directive, style = "bold" })
 highlight("PreCondit", { fg = colors.preprocessor_directive, style = "bold" })
-highlight("Type", { fg = colors.constant, style = "bold,underline" })
+highlight("Type", { fg = colors.library_object, style = "bold,underline" })
 highlight("StorageClass", { fg = colors.keyword, style = "bold" })
-highlight("Structure", { fg = colors.constant, style = "bold" })
-highlight("Typedef", { fg = colors.constant, style = "bold" })
+highlight("Structure", { fg = colors.library_object, style = "bold" })
+highlight("Typedef", { fg = colors.library_object, style = "bold" })
 highlight("Special", { fg = colors.string_escape })
 highlight("SpecialChar", { fg = colors.string_escape })
 highlight("Tag", { fg = colors.markup_tag, style = "bold" })
@@ -177,43 +177,20 @@ highlight("GitSignsAdd", { fg = colors.string })
 highlight("GitSignsChange", { fg = colors.function_name })
 highlight("GitSignsDelete", { fg = colors.error })
 
--- Terminal colors
-vim.g.terminal_color_0 = colors.bg
-vim.g.terminal_color_1 = colors.constant
-vim.g.terminal_color_2 = colors.string
-vim.g.terminal_color_3 = colors.search
-vim.g.terminal_color_4 = colors.keyword
-vim.g.terminal_color_5 = colors.constant_builtin
-vim.g.terminal_color_6 = colors.variable
-vim.g.terminal_color_7 = colors.fg
-vim.g.terminal_color_8 = colors.method_type
-vim.g.terminal_color_9 = colors.match_paren
-vim.g.terminal_color_10 = colors.string_escape
-vim.g.terminal_color_11 = "#FFFF99"
-vim.g.terminal_color_12 = colors.library_function
-vim.g.terminal_color_13 = colors.library_object
-vim.g.terminal_color_14 = "#7FFFD4"
-vim.g.terminal_color_15 = "#FFFFFF"
-
--- Bracket-specific highlighting using syntax groups
--- Define syntax groups for specific bracket types
-vim.cmd("syntax match CurlyBraces /[{}]/")
-vim.cmd("syntax match SquareBrackets /[\\[\\]]/")
-vim.cmd("syntax match Parentheses /[()]/")
-
--- Apply colors to bracket syntax groups
-highlight("CurlyBraces", { fg = colors.function_name })
-highlight("SquareBrackets", { fg = colors.constant_builtin })
-highlight("Parentheses", { fg = colors.fg })
-
--- Hook-specific highlighting for React/JavaScript
-vim.cmd("syntax match ReactHook /\\<use[A-Z][a-zA-Z0-9]*\\>/")
-highlight("ReactHook", { fg = colors.function_name, style = "bold" })
-
--- Specific keyword highlighting for import/export/const
-vim.cmd("syntax keyword ImportExportKeywords import export const let var")
-highlight("ImportExportKeywords", { fg = colors.function_name, style = "bold" })
-
--- Tree-sitter fallbacks
-highlight("@punctuation.bracket", { fg = colors.fg })
-highlight("@punctuation.delimiter", { fg = colors.fg }) 
+-- Terminal colors (exact .tmTheme colors)
+vim.g.terminal_color_0 = colors.bg                    -- black (#2A211C)
+vim.g.terminal_color_1 = colors.constant              -- red (#C5656B)
+vim.g.terminal_color_2 = colors.string                -- green (#049B0A)
+vim.g.terminal_color_3 = colors.function_name         -- yellow (#FF9358)
+vim.g.terminal_color_4 = colors.keyword               -- blue (#43A8ED)
+vim.g.terminal_color_5 = colors.constant_builtin      -- magenta (#585CF6)
+vim.g.terminal_color_6 = colors.variable              -- cyan (#318495)
+vim.g.terminal_color_7 = colors.fg                    -- white (#BDAE9D)
+vim.g.terminal_color_8 = colors.method_type           -- bright black (#8B8E9C)
+vim.g.terminal_color_9 = "#E5767C"                    -- bright red
+vim.g.terminal_color_10 = colors.string_escape        -- bright green (#2FE420)
+vim.g.terminal_color_11 = "#FFB368"                   -- bright yellow
+vim.g.terminal_color_12 = colors.caret                -- bright blue (#889AFF)
+vim.g.terminal_color_13 = colors.library_object       -- bright magenta (#6D79DE)
+vim.g.terminal_color_14 = "#51A4B5"                   -- bright cyan
+vim.g.terminal_color_15 = "#DDCEBD"                   -- bright white 

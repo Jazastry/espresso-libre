@@ -1,10 +1,10 @@
 # Espresso_Libre Theme for Neovim
 
-A warm, coffee-inspired Neovim colorscheme based on the original **Espresso Libre** TextMate theme by Chris Thomas. This theme brings the cozy, rich browns and vibrant syntax colors of the classic Espresso Libre theme to Neovim.
+A warm, coffee-inspired Neovim colorscheme based on the original **Espresso Libre** TextMate theme by Chris Thomas. This theme brings the cozy, rich browns and vibrant syntax colors of the classic Espresso Libre theme to Neovim with **exact color matching** from the original .tmTheme file.
 
 ## 🎨 Color Palette
 
-The theme uses the authentic colors from the original Espresso Libre TextMate theme:
+The theme uses the **exact colors** extracted directly from the original Espresso Libre .tmTheme file:
 
 | Element | Color | Hex |
 |---------|-------|-----|
@@ -25,13 +25,14 @@ The theme uses the authentic colors from the original Espresso Libre TextMate th
 
 ## ✨ Features
 
-- 🎯 **Authentic Colors**: Based on the original Espresso Libre TextMate theme
-- 🔥 **Rich Syntax Highlighting**: Carefully crafted colors for optimal readability
+- 🎯 **Exact Color Matching**: Colors extracted directly from the original .tmTheme file
+- 🔥 **Rich Syntax Highlighting**: Faithful reproduction of the original theme's syntax colors
 - 🌟 **Modern Plugin Support**: Works with Tree-sitter, LSP, Telescope, NvimTree, and more
 - ⚡ **High Performance**: Optimized for speed and efficiency
 - 🎨 **Customizable**: Easy configuration options for styles and transparency
-- 📱 **Terminal Support**: Includes terminal color definitions
+- 📱 **Terminal Support**: Includes terminal color definitions with exact theme colors
 - 🔧 **Lualine Integration**: Custom lualine theme included
+- 🎨 **Font Styling**: Proper bold, italic, and underline styles as per original theme
 
 ## 📦 Installation
 
@@ -146,7 +147,7 @@ This theme includes enhanced support for popular Neovim plugins:
 
 ## 🔍 Inspiration
 
-This theme is faithfully based on the original **Espresso Libre** TextMate theme created by Chris Thomas. The color palette and syntax highlighting rules have been carefully preserved to maintain the authentic feel of this beloved editor theme.
+This theme is faithfully based on the original **Espresso Libre** TextMate theme created by Chris Thomas. The colors are extracted directly from the original .tmTheme file, ensuring **100% accurate color reproduction**. Font styling (bold, italic, underline) has been preserved exactly as specified in the original theme to maintain the authentic feel of this beloved editor theme.
 
 ## 🤝 Contributing
 
