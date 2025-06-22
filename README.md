@@ -97,6 +97,62 @@ require('espresso-libre').setup({
 vim.cmd([[colorscheme espresso-libre]])
 ```
 
+### init.vim Usage
+
+If you're using Neovim with an `init.vim` configuration file instead of `init.lua`, you can use the theme as follows:
+
+#### Basic Usage in init.vim
+
+```vim
+" Enable the colorscheme
+colorscheme espresso-libre
+```
+
+#### With Configuration in init.vim
+
+```vim
+" Configure the theme before loading
+lua << EOF
+require('espresso-libre').setup({
+  transparent = false,        -- Enable transparent background
+  terminal_colors = true,     -- Set terminal colors
+  styles = {
+    comments = { italic = true },
+    keywords = { bold = true },
+    functions = { bold = true },
+    constants = { bold = true },
+    strings = {},
+    variables = {},
+  },
+})
+EOF
+
+" Enable the colorscheme
+colorscheme espresso-libre
+```
+
+#### Alternative init.vim Configuration
+
+If you prefer to keep configuration in Vimscript:
+
+```vim
+" Set theme variables before loading (optional)
+let g:espresso_libre_transparent = 0
+let g:espresso_libre_terminal_colors = 1
+
+" Enable the colorscheme
+colorscheme espresso-libre
+
+" Configure lualine theme (if using lualine)
+lua << EOF
+require('lualine').setup({
+  options = {
+    theme = 'espresso-libre'
+  }
+})
+EOF
+```
+
 ## ⚙️ Configuration
 
 ### Available Options
