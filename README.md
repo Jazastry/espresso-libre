@@ -34,6 +34,100 @@ The theme uses the **exact colors** extracted directly from the original Espress
 - 🔧 **Lualine Integration**: Custom lualine theme included
 - 🎨 **Font Styling**: Proper bold, italic, and underline styles as per original theme
 
+## ⚠️ Important
+
+**If you use TreeSitter, the Espresso-Libre theme must be loaded AFTER TreeSitter is initialized.** This ensures that TreeSitter's syntax highlighting groups are properly styled by the theme. If you load the colorscheme before TreeSitter, some syntax highlighting may not work correctly.
+
+### Correct Plugin Loading Order (when using TreeSitter):
+1. Load TreeSitter plugin
+2. Configure TreeSitter
+3. Load Espresso-Libre theme
+4. Apply colorscheme
+
+#### Example with lazy.nvim (init.lua):
+```lua
+{
+  'nvim-treesitter/nvim-treesitter',
+  priority = 900,  -- Higher priority loads first
+  config = function()
+    -- TreeSitter configuration
+    require('nvim-treesitter.configs').setup({
+      -- your treesitter config
+    })
+  end,
+},
+{
+  'username/espresso-libre',
+  priority = 800,  -- Lower priority loads after TreeSitter
+  config = function()
+    require('espresso-libre').setup({
+      -- your theme config
+    })
+    vim.cmd([[colorscheme espresso-libre]])
+  end,
+}
+```
+
+#### Example with lazy.nvim (init.vim):
+```vim
+lua << EOF
+require('lazy').setup({
+  {
+    'nvim-treesitter/nvim-treesitter',
+    priority = 900,  -- Higher priority loads first
+    config = function()
+      -- TreeSitter configuration
+      require('nvim-treesitter.configs').setup({
+        -- your treesitter config
+      })
+    end,
+  },
+  {
+    'username/espresso-libre',
+    priority = 800,  -- Lower priority loads after TreeSitter
+    config = function()
+      require('espresso-libre').setup({
+        -- your theme config
+      })
+      vim.cmd([[colorscheme espresso-libre]])
+    end,
+  }
+})
+EOF
+```
+
+#### Manual Loading Order (init.lua):
+```lua
+-- 1. Load TreeSitter first
+require('nvim-treesitter.configs').setup({
+  -- your treesitter config
+})
+
+-- 2. Then load and configure the theme
+require('espresso-libre').setup({
+  -- your theme config
+})
+vim.cmd([[colorscheme espresso-libre]])
+```
+
+#### Manual Loading Order (init.vim):
+```vim
+" 1. Load TreeSitter first
+lua << EOF
+require('nvim-treesitter.configs').setup({
+  -- your treesitter config
+})
+EOF
+
+" 2. Then load and configure the theme
+lua << EOF
+require('espresso-libre').setup({
+  -- your theme config
+})
+EOF
+colorscheme espresso-libre
+```
+
 ## 📦 Installation
 
 ### Using [packer.nvim](https://github.com/wbthomason/packer.nvim)
