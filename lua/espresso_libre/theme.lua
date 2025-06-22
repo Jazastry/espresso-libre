@@ -145,8 +145,7 @@ M.setup = function()
     ["@variable.parameter"] = { fg = colors.variable, italic = true },
     ["@variable.member"] = { fg = colors.variable },
     ["@variable.typescript"] = { fg = colors.variable },
-    ["@variable.parameter.typescript"] = { fg = colors.variable, italic = true },
-    
+
     ["@constant"] = { fg = colors.constant, bold = true },
     ["@constant.builtin"] = { fg = colors.constant_builtin, bold = true },
     ["@constant.macro"] = { fg = colors.preprocessor_directive, bold = true },
@@ -185,7 +184,6 @@ M.setup = function()
     ["@keyword.repeat"] = { fg = colors.keyword, bold = true },
     ["@keyword.exception"] = { fg = colors.keyword, bold = true },
     ["@keyword.import"] = { fg = colors.preprocessor_directive, bold = true },
-    ["@keyword.import.typescript"] = { fg = colors.preprocessor_directive, bold = true },
 
     ["@type"] = { fg = colors.library_object, bold = true },
     ["@type.builtin"] = { fg = colors.library_object, bold = true },
@@ -232,6 +230,12 @@ M.setup = function()
     ["@lsp.type.type"] = { fg = colors.library_object, bold = true },
     ["@lsp.type.typeParameter"] = { fg = colors.library_object, bold = true },
     ["@lsp.type.variable"] = { fg = colors.variable },
+    
+    -- TypeScript-specific LSP semantic tokens
+    ["@lsp.type.parameter.typescript"] = { fg = colors.variable, italic = true },
+    ["@lsp.type.variable.typescript"] = { fg = colors.variable },
+    ["@lsp.mod.declaration.typescript"] = { fg = colors.variable },
+    ["@lsp.mod.readonly.typescript"] = { fg = colors.variable },
     
     -- LSP diagnostics
     DiagnosticError = { fg = colors.error },
