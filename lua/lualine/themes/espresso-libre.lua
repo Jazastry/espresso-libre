@@ -1,4 +1,4 @@
--- Espresso_Libre theme for lualine
+-- Espresso-Libre theme for lualine
 -- Based on the original Espresso Libre TextMate theme by Chris Thomas
 
 local colors = {

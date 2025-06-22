@@ -1,13 +1,13 @@
--- Example configuration for Espresso_Libre.nvim
+-- Example configuration for Espresso-Libre.nvim
 -- Copy this to your Neovim configuration and modify as needed
 
 -- Basic setup with default options
-require("espresso_libre").setup()
-vim.cmd.colorscheme("espresso_libre")
+require("espresso-libre").setup()
+vim.cmd.colorscheme("espresso-libre")
 
 -- Advanced setup with custom options
 --[[
-require("espresso_libre").setup({
+require("espresso-libre").setup({
   -- Enable transparent background (good for terminal transparency)
   transparent = false,
   
@@ -52,14 +52,14 @@ require("espresso_libre").setup({
 })
 
 -- Load the theme
-require("espresso_libre").load()
+require("espresso-libre").load()
 --]]
 
 -- Example Lualine integration
 --[[
 require('lualine').setup({
   options = {
-    theme = 'espresso_libre',
+    theme = 'espresso-libre',
     section_separators = { left = '', right = '' },
     component_separators = { left = '', right = '' },
   },
@@ -161,7 +161,7 @@ require("nvim-tree").setup({
 vim.api.nvim_create_autocmd("ColorScheme", {
   pattern = "*",
   callback = function()
-    if vim.g.colors_name == "espresso_libre" then
+    if vim.g.colors_name == "espresso-libre" then
       -- Custom highlighting that should be applied after colorscheme loads
       vim.api.nvim_set_hl(0, "CursorLine", { bg = "#3D2B23" })
       vim.api.nvim_set_hl(0, "Visual", { bg = "#5D4037" })

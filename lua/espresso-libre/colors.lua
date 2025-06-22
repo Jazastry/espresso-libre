@@ -1,4 +1,4 @@
--- Espresso_Libre colorscheme for Neovim
+-- Espresso-Libre colorscheme for Neovim
 -- Based on the original Espresso Libre TextMate theme by Chris Thomas
 -- Colors extracted directly from the .tmTheme file
 

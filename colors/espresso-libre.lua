@@ -1,4 +1,4 @@
--- Espresso_Libre colorscheme for Neovim
+-- Espresso-Libre colorscheme for Neovim
 -- Based on the original Espresso Libre TextMate theme by Chris Thomas
 -- Traditional vim colorscheme support
 
@@ -7,7 +7,7 @@ if vim.fn.exists("syntax_on") then
   vim.cmd("syntax reset")
 end
 
-vim.g.colors_name = "espresso_libre"
+vim.g.colors_name = "espresso-libre"
 vim.o.background = "dark"
 
 -- Define colors from the original .tmTheme

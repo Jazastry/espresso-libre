@@ -1,4 +1,4 @@
--- Espresso_Libre colorscheme for Neovim
+-- Espresso-Libre colorscheme for Neovim
 -- Based on the original Espresso Libre TextMate theme by Chris Thomas
 
 local M = {}
@@ -29,12 +29,12 @@ function M.load()
     vim.cmd("syntax reset")
   end
   
-  vim.g.colors_name = "espresso_libre"
+  vim.g.colors_name = "espresso-libre"
   vim.o.background = "dark"
   
-  local colors = require('espresso_libre.colors')
-  local theme = require('espresso_libre.theme')
-  local terminal = require('espresso_libre.terminal')
+  local colors = require('espresso-libre.colors')
+  local theme = require('espresso-libre.theme')
+  local terminal = require('espresso-libre.terminal')
   
   -- Load the theme
   local highlights, lualine_theme = theme.setup()

@@ -1,4 +1,4 @@
-local colors = require('espresso_libre.colors')
+local colors = require('espresso-libre.colors')
 
 local M = {}
 

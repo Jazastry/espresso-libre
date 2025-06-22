@@ -1,4 +1,4 @@
-# Espresso_Libre Theme for Neovim
+# Espresso-Libre Theme for Neovim
 
 A warm, coffee-inspired Neovim colorscheme based on the original **Espresso Libre** TextMate theme by Chris Thomas. This theme brings the cozy, rich browns and vibrant syntax colors of the classic Espresso Libre theme to Neovim with **exact color matching** from the original .tmTheme file.
 
@@ -39,18 +39,18 @@ The theme uses the **exact colors** extracted directly from the original Espress
 ### Using [packer.nvim](https://github.com/wbthomason/packer.nvim)
 
 ```lua
-use 'username/espresso_libre'
+use 'username/espresso-libre'
 ```
 
 ### Using [lazy.nvim](https://github.com/folke/lazy.nvim)
 
 ```lua
 {
-  'username/espresso_libre',
+  'username/espresso-libre',
   lazy = false,
   priority = 1000,
   config = function()
-    vim.cmd([[colorscheme espresso_libre]])
+    vim.cmd([[colorscheme espresso-libre]])
   end,
 }
 ```
@@ -58,7 +58,7 @@ use 'username/espresso_libre'
 ### Using [vim-plug](https://github.com/junegunn/vim-plug)
 
 ```vim
-Plug 'username/espresso_libre'
+Plug 'username/espresso-libre'
 ```
 
 ### Manual Installation
@@ -66,7 +66,7 @@ Plug 'username/espresso_libre'
 Clone this repository to your Neovim configuration directory:
 
 ```bash
-git clone https://github.com/username/espresso_libre.git ~/.config/nvim/pack/themes/start/espresso_libre
+git clone https://github.com/username/espresso-libre.git ~/.config/nvim/pack/themes/start/espresso-libre
 ```
 
 ## 🚀 Usage
@@ -75,13 +75,13 @@ git clone https://github.com/username/espresso_libre.git ~/.config/nvim/pack/the
 
 ```lua
 -- Enable the colorscheme
-vim.cmd([[colorscheme espresso_libre]])
+vim.cmd([[colorscheme espresso-libre]])
 ```
 
 ### With Configuration
 
 ```lua
-require('espresso_libre').setup({
+require('espresso-libre').setup({
   transparent = false,        -- Enable transparent background
   terminal_colors = true,     -- Set terminal colors
   styles = {
@@ -94,7 +94,7 @@ require('espresso_libre').setup({
   },
 })
 
-vim.cmd([[colorscheme espresso_libre]])
+vim.cmd([[colorscheme espresso-libre]])
 ```
 
 ## ⚙️ Configuration
@@ -102,7 +102,7 @@ vim.cmd([[colorscheme espresso_libre]])
 ### Available Options
 
 ```lua
-require('espresso_libre').setup({
+require('espresso-libre').setup({
   transparent = false,        -- Enable transparent background
   terminal_colors = true,     -- Configure terminal colors
   styles = {
@@ -121,7 +121,7 @@ require('espresso_libre').setup({
 ```lua
 require('lualine').setup({
   options = {
-    theme = 'espresso_libre'
+    theme = 'espresso-libre'
   }
 })
 ```
@@ -173,4 +173,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-*Enjoy coding with the warm, inviting colors of Espresso_Libre! ☕* 
+*Enjoy coding with the warm, inviting colors of Espresso-Libre! ☕* 
