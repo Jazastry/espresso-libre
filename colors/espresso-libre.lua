@@ -43,7 +43,7 @@ local colors = {
   method_type = "#8B8E9C",       -- Function argument and result types (gray)
   
   -- Error colors
-  error = "#990000",             -- Invalid background (red)
+  error = "#ff3333",             -- Invalid background (red)
   error_fg = "#FFFFFF",          -- Invalid foreground (white)
   warning = "#FFD0D0",           -- Invalid trailing whitespace (light red)
   
