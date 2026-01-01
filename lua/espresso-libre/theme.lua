@@ -173,6 +173,10 @@ M.setup = function()
     ["@function.method"] = { fg = colors.function_name, bold = true },
     ["@function.method.call"] = { fg = colors.function_name, bold = true },
     
+    -- New treesitter highlight groups (nvim-treesitter 0.9+)
+    ["@method"] = { fg = colors.function_name, bold = true },
+    ["@method.call"] = { fg = colors.function_name, bold = true },
+    
     ["@constructor"] = { fg = colors.library_object, bold = true },
     ["@operator"] = { fg = colors.operator },
     
@@ -349,3 +353,4 @@ M.setup = function()
 end
 
 return M 
+
