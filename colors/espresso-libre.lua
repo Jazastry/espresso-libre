@@ -162,15 +162,23 @@ highlight("DiagnosticError", { fg = colors.error })
 highlight("DiagnosticWarn", { fg = colors.function_name })
 highlight("DiagnosticInfo", { fg = colors.keyword })
 highlight("DiagnosticHint", { fg = colors.string })
+-- Unused/deprecated: no dimming, only warning underline
+highlight("DiagnosticUnnecessary", { fg = colors.fg })
+highlight("DiagnosticDeprecated", { fg = colors.fg })
 highlight("DiagnosticUnderlineError", { sp = colors.error, style = "undercurl" })
 highlight("DiagnosticUnderlineWarn", { sp = colors.function_name, style = "undercurl" })
 highlight("DiagnosticUnderlineInfo", { sp = colors.keyword, style = "undercurl" })
 highlight("DiagnosticUnderlineHint", { sp = colors.string, style = "undercurl" })
+highlight("DiagnosticUnderlineUnnecessary", { sp = colors.function_name, style = "undercurl" })
+highlight("DiagnosticUnderlineDeprecated", { sp = colors.function_name, style = "undercurl" })
 
 -- LSP references
 highlight("LspReferenceText", { bg = colors.line_highlight })
 highlight("LspReferenceRead", { bg = colors.line_highlight })
 highlight("LspReferenceWrite", { bg = colors.line_highlight })
+
+-- coc.nvim: unused code — no dimming, keep syntax colors; warning underline only
+highlight("CocUnusedHighlight", { sp = colors.function_name, style = "undercurl" })
 
 -- Git signs
 highlight("GitSignsAdd", { fg = colors.string })

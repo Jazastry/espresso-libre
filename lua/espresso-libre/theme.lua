@@ -246,11 +246,16 @@ M.setup = function()
     DiagnosticWarn = { fg = colors.function_name },
     DiagnosticInfo = { fg = colors.keyword },
     DiagnosticHint = { fg = colors.string },
+    -- Unused/deprecated: no dimming, only warning underline
+    DiagnosticUnnecessary = { fg = colors.fg },
+    DiagnosticDeprecated = { fg = colors.fg },
     
     DiagnosticUnderlineError = { sp = colors.error, undercurl = true },
     DiagnosticUnderlineWarn = { sp = colors.function_name, undercurl = true },
     DiagnosticUnderlineInfo = { sp = colors.keyword, undercurl = true },
     DiagnosticUnderlineHint = { sp = colors.string, undercurl = true },
+    DiagnosticUnderlineUnnecessary = { sp = colors.function_name, undercurl = true },
+    DiagnosticUnderlineDeprecated = { sp = colors.function_name, undercurl = true },
     
     -- LSP references
     LspReferenceText = { bg = colors.line_highlight },
@@ -258,6 +263,9 @@ M.setup = function()
     LspReferenceWrite = { bg = colors.line_highlight },
     
     -- Plugin support
+    
+    -- coc.nvim: unused code — no dimming, keep syntax colors; warning underline only
+    CocUnusedHighlight = { sp = colors.function_name, undercurl = true },
     
     -- Telescope
     TelescopeNormal = { fg = colors.fg, bg = colors.bg },
