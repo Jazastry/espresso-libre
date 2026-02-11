@@ -57,7 +57,7 @@ The theme uses the **exact colors** extracted directly from the original Espress
   end,
 },
 {
-  'username/espresso-libre',
+  'Jazastry/espresso-libre',
   priority = 800,  -- Lower priority loads after TreeSitter
   config = function()
     require('espresso-libre').setup({
@@ -83,7 +83,7 @@ require('lazy').setup({
     end,
   },
   {
-    'username/espresso-libre',
+    'Jazastry/espresso-libre',
     priority = 800,  -- Lower priority loads after TreeSitter
     config = function()
       require('espresso-libre').setup({
@@ -133,14 +133,14 @@ colorscheme espresso-libre
 ### Using [packer.nvim](https://github.com/wbthomason/packer.nvim)
 
 ```lua
-use 'username/espresso-libre'
+use 'Jazastry/espresso-libre'
 ```
 
 ### Using [lazy.nvim](https://github.com/folke/lazy.nvim)
 
 ```lua
 {
-  'username/espresso-libre',
+  'Jazastry/espresso-libre',
   lazy = false,
   priority = 1000,
   config = function()
@@ -152,7 +152,7 @@ use 'username/espresso-libre'
 ### Using [vim-plug](https://github.com/junegunn/vim-plug)
 
 ```vim
-Plug 'username/espresso-libre'
+Plug 'Jazastry/espresso-libre'
 ```
 
 ### Manual Installation
@@ -160,7 +160,7 @@ Plug 'username/espresso-libre'
 Clone this repository to your Neovim configuration directory:
 
 ```bash
-git clone https://github.com/username/espresso-libre.git ~/.config/nvim/pack/themes/start/espresso-libre
+git clone https://github.com/Jazastry/espresso-libre.git ~/.config/nvim/pack/themes/start/espresso-libre
 ```
 
 ## 🚀 Usage
