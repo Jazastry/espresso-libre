@@ -76,11 +76,11 @@ M.setup = function()
     Folded = { fg = colors.method_type, bg = colors.light_bg },
     FoldColumn = { fg = colors.method_type, bg = colors.bg },
     
-    -- Diff
-    DiffAdd = { bg = colors.string, fg = colors.bg },
-    DiffChange = { bg = colors.function_name, fg = colors.bg },
-    DiffDelete = { bg = colors.error, fg = colors.error_fg },
-    DiffText = { bg = colors.keyword, fg = colors.bg },
+    -- Diff (milder backgrounds for better readability)
+    DiffAdd = { bg = "#1a3a1a", fg = colors.string },
+    DiffChange = { bg = "#4a3a2a", fg = colors.function_name },
+    DiffDelete = { bg = "#3a1a1a", fg = colors.error },
+    DiffText = { bg = "#1a2a3a", fg = colors.keyword },
     
     -- Spelling
     SpellBad = { sp = colors.error, undercurl = true },
